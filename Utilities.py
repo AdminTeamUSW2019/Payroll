@@ -114,5 +114,6 @@ def WriteEmployeePaylistToFile(employee):
                  "\n\nYearly Salery: " + str(employee.salary) +
                  "\nDays worked (month): " + str(employee.daysWorked) +
                  "\nWage for current month: " + str(CalculateMonthlyWage(employee.salary, employee.daysWorked)))
- 
-	print(outputString)
+	f = open("Employee" + employee.employeeNumber + "Payslip", "w")
+	f.write(outputString)
+	f.close()
