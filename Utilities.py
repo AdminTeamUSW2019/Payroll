@@ -5,11 +5,12 @@ import os.path
 
 #struct to hold employee data for the GUI
 class Employee:
-	def __init__(self, forename, surname, email_address, salery):
+	def __init__(self, forename, surname, email_address, salery, employeeNum):
 		self.forename = forename
 		self.surname = surname
 		self.email_address = email_address
 		self.salery = salery
+		self.employeeNumber = employeeNum
   
 def GetDbData():
     print("Loading...")
@@ -57,12 +58,15 @@ def GetEmployeeData(employeeNum, data):
 			print("salery: " + str(salery))
 
             #return employee data
-			tempEmployee = Employee(forename, surname, email_address, salery)
+			tempEmployee = Employee(forename, surname, email_address, salery, employeeNum)
+   
+			cursor.close()
+			cnx.close()
+   
 			return tempEmployee
 
 
 		#catch error
 	except mysql.connector.Error as err:
-		print(err)
-	else:
-	  cnx.close() #close connection
+		cursor.close()
+		cnx.close()

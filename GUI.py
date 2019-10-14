@@ -1,5 +1,6 @@
 import tkinter as tk
 import Utilities
+from tkinter import messagebox
  
  #initialize utilities and get json data
 json_data = Utilities.GetDbData()
@@ -59,6 +60,7 @@ class StartPage(tk.Frame):
 
 class PageOne(tk.Frame):
 
+    #initialization of the page
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         
@@ -67,18 +69,41 @@ class PageOne(tk.Frame):
 
         menuButton = tk.Button(self, text="Menu",
                             command=lambda: controller.show_frame(StartPage),
-                            font=BUTTON_FONT)  
+                            font=BUTTON_FONT)
+        
+        searchButton = tk.Button(self, text="Search", font=BUTTON_FONT,
+                                  command=lambda: self.Search(forename, surname, yearlySalery, entryBox))
+        
         employeeLabel = tk.Label(self, text="Enter employee number", font=BUTTON_FONT)        
-        entryBox = tk.Entry(self) 
+        entryBox = tk.Entry(self, text="test") 
         forename = tk.Label(self, text="Forename: ", font=BUTTON_FONT)
         surname = tk.Label(self, text="Surname: ", font=BUTTON_FONT)
+        yearlySalery = tk.Label(self, text="Salery: ", font=BUTTON_FONT)
         
         #Grid setup
         titleLabel.grid(row=0, columnspan=3, sticky="E", padx=10, pady=10)
-        employeeLabel.grid(row=1)
-        entryBox.grid(row=1, column=2)
-        forename.grid(row=2, sticky="E", padx=(0, 115))
-        surname.grid(row=3, sticky="E", padx=(0, 115))
+        employeeLabel.grid(row=1, sticky="E")
+        entryBox.grid(row=1, column=2, sticky="E")
+        forename.grid(row=2, sticky="W", padx=(0, 115), columnspan=3)
+        surname.grid(row=3, sticky="W", padx=(0, 115), columnspan=3)
+        yearlySalery.grid(row=4, sticky="W", padx=(0, 115), columnspan=3)
+        searchButton.grid(row=5, sticky="W")
+        menuButton.grid(row=6, sticky="S",columnspan=3, pady=(30, 0), padx=(30, 0))
+        
+        
+    def Search(self, forename, surname, yearlySalery, entryBox):
+        #read data from database
+        tempEmployee = Utilities.GetEmployeeData(entryBox.get(), json_data);
+        
+        if tempEmployee is None:
+            print("Error: Unable to locate employee in database")
+            messagebox.showerror("Error!", "Unable to locate employee in database,\n check the employee number or contact a system admin")
+            return
+        
+        ##update gui
+        forename.configure(text="Forename: " + tempEmployee.forename)
+        surname.configure(text="Surname: " + tempEmployee.surname)
+        yearlySalery.configure(text="Salery: " + str(tempEmployee.salery))
         
 
 class PageTwo(tk.Frame):
@@ -96,6 +121,6 @@ class PageTwo(tk.Frame):
 
 
 app = PayrollApp()
-app.geometry("500x300")
+app.geometry("400x300")
 app.resizable(width=False, height=False)
 app.mainloop()
