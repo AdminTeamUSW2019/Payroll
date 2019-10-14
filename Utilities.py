@@ -2,15 +2,22 @@
 import mysql.connector
 import json
 import os.path
+import math
+from decimal import Decimal
+
+#todo: put this in a config file
+workingDaysInMonth = 20
 
 #struct to hold employee data for the GUI
 class Employee:
-	def __init__(self, forename, surname, email_address, salery, employeeNum):
+	def __init__(self, employeeNum, forename, surname, email_address, salary,dateStarted, daysWorked):
 		self.forename = forename
 		self.surname = surname
 		self.email_address = email_address
-		self.salery = salery
+		self.salary = salary
+		self.dateStarted = dateStarted
 		self.employeeNumber = employeeNum
+		self.daysWorked = daysWorked
   
 def GetDbData():
     print("Loading...")
@@ -46,19 +53,22 @@ def GetEmployeeData(employeeNum, data):
 		cursor = cnx.cursor()
 
         #query database
-		query = ("SELECT employee_number, forename, surname, email_address, salery FROM Employees WHERE employee_number = %s")
+		query = ("SELECT employee_number, forename, surname, email_address, salary, dateStarted, days_worked_this_month FROM Employees WHERE employee_number = %s")
 		cursor.execute(query, (employeeNum,));
 
         #debug output
-		for (employee_number,forename, surname, email_address, salery) in cursor:
+		for (employee_number,forename, surname, email_address, salary, dateStarted, days_worked_this_month) in cursor:
 			print("-------------------------------")
+			print("Employee num: " + str(employee_number))
 			print("Forename: " + forename)
 			print("Surname: " + surname)
 			print("email addr: " + email_address)
-			print("salery: " + str(salery))
+			print("salary: " + str(salary))
+			print("Date Hired:" + str(dateStarted))
+			print("Days worked this month: " + str(days_worked_this_month))
 
             #return employee data
-			tempEmployee = Employee(forename, surname, email_address, salery, employeeNum)
+			tempEmployee = Employee(employeeNum, forename, surname, email_address, salary,dateStarted, days_worked_this_month)
    
 			cursor.close()
 			cnx.close()
@@ -70,3 +80,39 @@ def GetEmployeeData(employeeNum, data):
 	except mysql.connector.Error as err:
 		cursor.close()
 		cnx.close()
+  
+def CalculateMonthlyWage(yearlySalery, daysWorked):
+	#TO-DO: magic conversion here 
+	taxRate = 0.00
+	monthlyWageBeforeTax = (yearlySalery*100 / 260.71) * daysWorked
+ 
+	#todo: put these values into a config file
+ 
+	#locate tax bracket
+	if yearlySalery > 150000:
+		taxRate = 0.45
+	elif yearlySalery > 50000:
+		taxRate = 0.4
+	elif yearlySalery > 12500:
+		taxRate = 0.2
+	else:
+ 		taxRate = 0.00
+   
+	temp = math.floor(monthlyWageBeforeTax* (1.0-taxRate))
+
+   
+	#return correct amount
+	return float(temp/100)
+
+def WriteEmployeePaylistToFile(employee):
+	outputString = ("Employee: "+ str(employee.employeeNumber) +
+                 "\nForename: " + employee.forename +
+                 "\nSurname: " + employee.surname +
+                 "\nEmail Addr: " + employee.email_address +
+                 "\nDate Hired: " + str(employee.dateStarted) +
+                 "\n------------------------------------------" +
+                 "\n\nYearly Salery: " + str(employee.salary) +
+                 "\nDays worked (month): " + str(employee.daysWorked) +
+                 "\nWage for current month: " + str(CalculateMonthlyWage(employee.salary, employee.daysWorked)))
+ 
+	print(outputString)
