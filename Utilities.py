@@ -16,29 +16,30 @@ class Employee:
 		self.employeeNumber = employeeNum
 		self.daysWorked = daysWorked
   
-def GetDbData():
+def GetJsonData():
     print("Loading...")
 
     #Check for database file, if not exist create file with correct formating
-    if not os.path.exists("./dbConnectionData.json"):
-        print("Database connection data file missing!\nCreating File...")
+    if not os.path.exists("./appData.json"):
+        print("App data file missing!\nCreating File...")
 
         #generate data
         data = {
 		    'username': '',
 		    'password': '',
 		    'host': '',
-			'database_name': ''
+			'database_name': '',
+			'working_days_in_year': 260.71
 			}
         
-        with open('./dbConnectionData.json', 'w') as outfile:
+        with open('./appData.json', 'w') as outfile:
             json.dump(data, outfile, indent=4)
 		#exit program
         exit(0)
 
 
 	#Open File
-    with open("./dbConnectionData.json") as json_file:
+    with open("./appData.json") as json_file:
         data = json.load(json_file)
         return data
     
@@ -78,10 +79,10 @@ def GetEmployeeData(employeeNum, data):
 		cursor.close()
 		cnx.close()
   
-def CalculateMonthlyWage(yearlySalery, daysWorked):
+def CalculateMonthlyWage(yearlySalery, daysWorked, workingDaysInYear):
 	#TO-DO: magic conversion here 
 	taxRate = 0.00
-	monthlyWageBeforeTax = (yearlySalery*100 / 260.71) * daysWorked
+	monthlyWageBeforeTax = (yearlySalery*100 / workingDaysInYear) * daysWorked
  
 	#todo: put these values into a config file
  
@@ -95,6 +96,7 @@ def CalculateMonthlyWage(yearlySalery, daysWorked):
 	else:
  		taxRate = 0.00
    
+	print(workingDaysInYear)
 	temp = math.floor(monthlyWageBeforeTax* (1.0-taxRate))
 
    
@@ -102,7 +104,7 @@ def CalculateMonthlyWage(yearlySalery, daysWorked):
 	return float(temp/100)
 
 #writes an employee's payslip to a file
-def WriteEmployeePaylistToFile(employee):
+def WriteEmployeePaylistToFile(employee, workingDaysInYear):
 	outputString = ("Employee: "+ str(employee.employeeNumber) +
                  "\nForename: " + employee.forename +
                  "\nSurname: " + employee.surname +
@@ -111,7 +113,7 @@ def WriteEmployeePaylistToFile(employee):
                  "\n------------------------------------------" +
                  "\n\nYearly Salery: " + str(employee.salary) +
                  "\nDays worked (month): " + str(employee.daysWorked) +
-                 "\nWage for current month: " + str(CalculateMonthlyWage(employee.salary, employee.daysWorked)))
+                 "\nWage for current month: " + str(CalculateMonthlyWage(employee.salary, employee.daysWorked, workingDaysInYear)))
 	f = open("Employee" + employee.employeeNumber + "Payslip", "w")
 	f.write(outputString)
 	f.close()

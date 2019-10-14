@@ -3,7 +3,7 @@ import Utilities
 from tkinter import messagebox
  
  #initialize utilities and get json data
-json_data = Utilities.GetDbData()
+json_data = Utilities.GetJsonData()
 
 ##Setup fonts for the GUI
 LARGE_FONT= ("Verdana", 25)
@@ -112,7 +112,7 @@ class PayslipPage(tk.Frame):
         surname.configure(text="Surname: " + tempEmployee.surname)
         yearlySalary.configure(text="Salary: " + str(tempEmployee.salary))
         
-        Utilities.WriteEmployeePaylistToFile(tempEmployee)
+        Utilities.WriteEmployeePaylistToFile(tempEmployee, json_data['working_days_in_year'])
         
 
 #Screen to add or remove expenses from a employee
