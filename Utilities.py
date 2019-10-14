@@ -36,3 +36,33 @@ def GetDbData():
     with open("dbConnectionData.json") as json_file:
         data = json.load(json_file)
         return data
+    
+def GetEmployeeData(employeeNum, data):
+    	#setup mysql connection
+	try:
+        #setup connection
+		cnx = mysql.connector.connect(user=data['username'], database=data['database_name'], password=data['password'], host=data['host'], auth_plugin='mysql_native_password')
+		cursor = cnx.cursor()
+
+        #query database
+		query = ("SELECT employee_number, forename, surname, email_address, salery FROM Employees WHERE employee_number = %s")
+		cursor.execute(query, (employeeNum,));
+
+        #debug output
+		for (employee_number,forename, surname, email_address, salery) in cursor:
+			print("-------------------------------")
+			print("Forename: " + forename)
+			print("Surname: " + surname)
+			print("email addr: " + email_address)
+			print("salery: " + str(salery))
+
+            #return employee data
+			tempEmployee = Employee(forename, surname, email_address, salery)
+			return tempEmployee
+
+
+		#catch error
+	except mysql.connector.Error as err:
+		print(err)
+	else:
+	  cnx.close() #close connection
