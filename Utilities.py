@@ -26,14 +26,14 @@ def GetDbData():
 			'database_name': ''
 			}
         
-        with open('dbConnectionData.json', 'w') as outfile:
+        with open('./dbConnectionData.json', 'w') as outfile:
             json.dump(data, outfile, indent=4)
 		#exit program
         exit(0)
 
 
 	#Open File
-    with open("dbConnectionData.json") as json_file:
+    with open("./dbConnectionData.json") as json_file:
         data = json.load(json_file)
         return data
     
