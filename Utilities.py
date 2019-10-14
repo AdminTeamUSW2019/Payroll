@@ -5,9 +5,6 @@ import os.path
 import math
 from decimal import Decimal
 
-#todo: put this in a config file
-workingDaysInMonth = 20
-
 #struct to hold employee data for the GUI
 class Employee:
 	def __init__(self, employeeNum, forename, surname, email_address, salary,dateStarted, daysWorked):
@@ -104,6 +101,7 @@ def CalculateMonthlyWage(yearlySalery, daysWorked):
 	#return correct amount
 	return float(temp/100)
 
+#writes an employee's payslip to a file
 def WriteEmployeePaylistToFile(employee):
 	outputString = ("Employee: "+ str(employee.employeeNumber) +
                  "\nForename: " + employee.forename +
