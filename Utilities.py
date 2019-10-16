@@ -79,6 +79,46 @@ def GetEmployeeData(employeeNum, data):
 		cursor.close()
 		cnx.close()
   
+def UpdateMonthlyExpenses(expenseValue, employeeNum, data):
+    #setup connection
+	cnx = mysql.connector.connect(user=data['username'], database=data['database_name'], password=data['password'], host=data['host'], auth_plugin='mysql_native_password')
+	cursor = cnx.cursor()
+ 
+	expenses = 0;
+ 
+	#get current expenses
+	try:
+		#query database
+		query = ("SELECT monthly_expenses FROM employees WHERE employee_number = %s")
+		cursor.execute(query, (employeeNum,));
+	
+		for (monthly_expenses,) in cursor:
+			expenses = monthly_expenses
+   
+   #error with query
+	except mysql.connector.Error as err:
+		print("Unable to fetch monthly_expenses for employee: " + employeeNum)
+		cursor.close()
+		cnx.close()
+		return;
+
+	#update value
+	expenses += expenseValue
+	
+	try:
+		query = ("UPDATE employees SET monthly_expenses = %s WHERE employee_number = %s")
+		cursor.execute(query, (expenses, employeeNum))
+  
+  	#error updating value
+	except mysql.connector.Error as err:
+		print("Fetched monthly expenese but could not update. employee:  " + employeeNum)
+  
+  ##close connection and end
+	cursor.close()
+	cnx.close()
+
+ 
+  
 def CalculateMonthlyWage(yearlySalery, daysWorked, workingDaysInYear):
 	#TO-DO: magic conversion here 
 	taxRate = 0.00
