@@ -79,14 +79,13 @@ def GetEmployeeData(employeeNum, data):
 		cursor.close()
 		cnx.close()
   
-def UpdateMonthlyExpenses(expenseValue, employeeNum, data):
-    #setup connection
+  ##returns an employee's monthly expenses to be paid back (-1 is error state)
+def GetMonthlyExpenses(employeeNum, data):
 	cnx = mysql.connector.connect(user=data['username'], database=data['database_name'], password=data['password'], host=data['host'], auth_plugin='mysql_native_password')
 	cursor = cnx.cursor()
- 
-	expenses = 0;
- 
+    
 	#get current expenses
+	expenses = -1
 	try:
 		#query database
 		query = ("SELECT monthly_expenses FROM employees WHERE employee_number = %s")
@@ -100,17 +99,32 @@ def UpdateMonthlyExpenses(expenseValue, employeeNum, data):
 			print("Unable to fetch monthly_expenses for employee: " + employeeNum)
 			cursor.close()
 			cnx.close()
-			return False
+			return -1
 	
 		expenses = row[0]
 		print("Employee: " + str(employeeNum) + " current expense: " + str(expenses))
-   
-   #error with query
+	   #error with query
 	except mysql.connector.Error as err:
 		print("Unable to fetch monthly_expenses for employee: " + employeeNum)
 		cursor.close()
 		cnx.close()
-		return False
+		return -1
+
+	return expenses;
+  
+  
+  
+  #updates the database with new values for monthly expenses
+def UpdateMonthlyExpenses(expenseValue, employeeNum, data):
+    #setup connection
+	cnx = mysql.connector.connect(user=data['username'], database=data['database_name'], password=data['password'], host=data['host'], auth_plugin='mysql_native_password')
+	cursor = cnx.cursor()
+ 
+	#get existing expenses and return false if an error occurs
+	expenses = GetMonthlyExpenses(employeeNum, data);
+	if expenses == -1:
+		return False;
+
 
 	#update value
 	expenses += expenseValue
@@ -132,13 +146,13 @@ def UpdateMonthlyExpenses(expenseValue, employeeNum, data):
 	return True
 
  
-  
-def CalculateMonthlyWage(yearlySalery, daysWorked, workingDaysInYear):
-	#TO-DO: magic conversion here 
+  #calculates an employee's montly wage
+def CalculateMonthlyWage(yearlySalery, daysWorked, employeeNum, data):
+	
+	#calculate monthly wage before tax using number of days worked and working days in a year
 	taxRate = 0.00
-	monthlyWageBeforeTax = (yearlySalery*100 / workingDaysInYear) * daysWorked
+	monthlyWageBeforeTax = (yearlySalery*100 / data['working_days_in_year']) * daysWorked
  
-	#todo: put these values into a config file
  
 	#locate tax bracket
 	if yearlySalery > 150000:
@@ -150,15 +164,14 @@ def CalculateMonthlyWage(yearlySalery, daysWorked, workingDaysInYear):
 	else:
  		taxRate = 0.00
    
-	print(workingDaysInYear)
 	temp = math.floor(monthlyWageBeforeTax* (1.0-taxRate))
-
+	temp = temp/100 + GetMonthlyExpenses(employeeNum, data)
    
 	#return correct amount
-	return float(temp/100)
+	return float(temp)
 
 #writes an employee's payslip to a file
-def WriteEmployeePaylistToFile(employee, workingDaysInYear):
+def WriteEmployeePaylistToFile(employee, data):
 	outputString = ("Employee: "+ str(employee.employeeNumber) +
                  "\nForename: " + employee.forename +
                  "\nSurname: " + employee.surname +
@@ -167,10 +180,11 @@ def WriteEmployeePaylistToFile(employee, workingDaysInYear):
                  "\n------------------------------------------" +
                  "\n\nYearly Salery: " + str(employee.salary) +
                  "\nDays worked (month): " + str(employee.daysWorked) +
-                 "\nWage for current month: " + str(CalculateMonthlyWage(employee.salary, employee.daysWorked, workingDaysInYear)))
+                 "\nWage for current month: " + str(CalculateMonthlyWage(employee.salary, employee.daysWorked, employee.employeeNumber, data)))
 	f = open("Employee" + employee.employeeNumber + "Payslip", "w")
 	f.write(outputString)
 	f.close()
+ 
  
  #validates that an input is an integer
 def ValidateInt(input):
@@ -178,6 +192,7 @@ def ValidateInt(input):
         return True
     else:
         return False
+ 
  
  #validates that an input is a positive only integer   
 def ValidatePositiveInt(input):

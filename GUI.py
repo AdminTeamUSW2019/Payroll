@@ -119,7 +119,7 @@ class PayslipPage(tk.Frame):
         surname.configure(text="Surname: " + tempEmployee.surname)
         yearlySalary.configure(text="Salary: " + str(tempEmployee.salary))
         
-        Utilities.WriteEmployeePaylistToFile(tempEmployee, json_data['working_days_in_year'])
+        Utilities.WriteEmployeePaylistToFile(tempEmployee, json_data)
         
 
 #Screen to add or remove expenses from a employee
