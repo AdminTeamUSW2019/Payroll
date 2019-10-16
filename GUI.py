@@ -49,16 +49,22 @@ class MenuPage(tk.Frame):
         label.pack(pady=10,padx=10)
 
         #nav button 1
-        button = tk.Button(self, text="Payslip",
+        payslipButton = tk.Button(self, text="Payslip",
                             command=lambda: controller.show_frame(PayslipPage),
                             font=BUTTON_FONT)
-        button.pack()
+        payslipButton.pack()
 
         #nav button 2
-        button2 = tk.Button(self, text="Expenses",
+        expensesButton = tk.Button(self, text="Expenses",
                             command=lambda: controller.show_frame(ExpensePage),
                             font=BUTTON_FONT)
-        button2.pack()
+        expensesButton.pack()
+        
+        #exit button
+        exitButton = tk.Button(self, text="Quit",
+                               command = lambda: self.quit(),
+                               font=BUTTON_FONT)
+        exitButton.pack()
 
 
 #Page that handles generating a payslip for the given employee number
@@ -76,8 +82,9 @@ class PayslipPage(tk.Frame):
                             font=BUTTON_FONT)
         
         #button to search for employee data
-        searchButton = tk.Button(self, text="Search", font=BUTTON_FONT,
-                                  command=lambda: self.Search(forename, surname, yearlySalary, entryBox))
+        generateButton = tk.Button(self, text="Generate", font=BUTTON_FONT,
+                                  command=lambda: self.Search(forename, surname, yearlySalary,
+                                                               entryBox, expensesText))
         
         #labels
         employeeLabel = tk.Label(self, text="Enter employee number", font=BUTTON_FONT)        
@@ -85,6 +92,7 @@ class PayslipPage(tk.Frame):
         forename = tk.Label(self, text="Forename: ", font=BUTTON_FONT)
         surname = tk.Label(self, text="Surname: ", font=BUTTON_FONT)
         yearlySalary = tk.Label(self, text="Salary: ", font=BUTTON_FONT)
+        expensesText = tk.Label(self, text="Expenses due: ", font=BUTTON_FONT)
         
         #setup pointer to validation callback function
         validation = self.register(Utilities.ValidateInt)
@@ -96,15 +104,16 @@ class PayslipPage(tk.Frame):
         forename.grid(row=2, sticky="W", padx=(0, 115), columnspan=3)
         surname.grid(row=3, sticky="W", padx=(0, 115), columnspan=3)
         yearlySalary.grid(row=4, sticky="W", padx=(0, 115), columnspan=3)
-        searchButton.grid(row=5, sticky="W")
-        menuButton.grid(row=6, sticky="S",columnspan=3, pady=(30, 0), padx=(30, 0))
+        expensesText.grid(row=5, sticky="W")
+        generateButton.grid(row=6, sticky="W")
+        menuButton.grid(row=7, sticky="S",columnspan=3, pady=(0, 0), padx=(30, 0))
         
         ##enable validation on entry box
         entryBox.config(validate="key", validatecommand=(validation, '%S'))
         
     
     #searches for an employee. is bound to searchButton
-    def Search(self, forename, surname, yearlySalary, entryBox):
+    def Search(self, forename, surname, yearlySalary, entryBox, expensesText):
         #read data from database
         tempEmployee = Utilities.GetEmployeeData(entryBox.get(), json_data); #recieve data
         
@@ -118,6 +127,8 @@ class PayslipPage(tk.Frame):
         forename.configure(text="Forename: " + tempEmployee.forename)
         surname.configure(text="Surname: " + tempEmployee.surname)
         yearlySalary.configure(text="Salary: " + str(tempEmployee.salary))
+        
+        expensesText.configure(text="Expenses due: " + str(Utilities.GetMonthlyExpenses(tempEmployee.employeeNumber, json_data)))
         
         Utilities.WriteEmployeePaylistToFile(tempEmployee, json_data)
         
