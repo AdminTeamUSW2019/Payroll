@@ -9,7 +9,6 @@ json_data = Utilities.GetJsonData()
 LARGE_FONT= ("Verdana", 25)
 BUTTON_FONT= ("Arial", 15)
 
-
 ##GUI Entry point
 class PayrollApp(tk.Tk):
 
@@ -37,6 +36,7 @@ class PayrollApp(tk.Tk):
     def show_frame(self, cont):
         frame = self.frames[cont]
         frame.tkraise()
+        
 
 
   #menu page of the application, can access either payslip screen or expense screen
@@ -61,6 +61,7 @@ class MenuPage(tk.Frame):
         button2.pack()
 
 
+#Page that handles generating a payslip for the given employee number
 class PayslipPage(tk.Frame):
     #initialization of the page
     def __init__(self, parent, controller):
@@ -80,10 +81,13 @@ class PayslipPage(tk.Frame):
         
         #labels
         employeeLabel = tk.Label(self, text="Enter employee number", font=BUTTON_FONT)        
-        entryBox = tk.Entry(self, text="test") 
+        entryBox = tk.Entry(self) 
         forename = tk.Label(self, text="Forename: ", font=BUTTON_FONT)
         surname = tk.Label(self, text="Surname: ", font=BUTTON_FONT)
         yearlySalary = tk.Label(self, text="Salary: ", font=BUTTON_FONT)
+        
+        #setup pointer to validation callback function
+        validation = self.register(Utilities.ValidateInt)
         
         #Grid setup
         titleLabel.grid(row=0, columnspan=3, sticky="E", padx=10, pady=10)
@@ -94,6 +98,9 @@ class PayslipPage(tk.Frame):
         yearlySalary.grid(row=4, sticky="W", padx=(0, 115), columnspan=3)
         searchButton.grid(row=5, sticky="W")
         menuButton.grid(row=6, sticky="S",columnspan=3, pady=(30, 0), padx=(30, 0))
+        
+        ##enable validation on entry box
+        entryBox.config(validate="key", validatecommand=(validation, '%S'))
         
     
     #searches for an employee. is bound to searchButton
@@ -119,14 +126,47 @@ class PayslipPage(tk.Frame):
 class ExpensePage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
-        label = tk.Label(self, text="Expense Management", font=LARGE_FONT)
-        label.pack(pady=10,padx=10)
+        titleLabel = tk.Label(self, text="Expense Management", font=LARGE_FONT)
 
-        button1 = tk.Button(self, text="Menu",
+        #button to return to the menu page
+        menuButton = tk.Button(self, text="Menu",
                             command=lambda: controller.show_frame(MenuPage),
                             font=BUTTON_FONT)
-        button1.pack(side="left")
         
+        #button to add expense
+        expenseButton = tk.Button(self, text="Update Expenses",
+                                  command=lambda: self.UpdateExpenses(int(expenseValueEntry.get()), employeeNumberEntry.get()), font=BUTTON_FONT)
+        
+        #labels
+        lblEmployeeNumber = tk.Label(self, text="Employee Num: ", font=BUTTON_FONT)
+        lblExpenseValue = tk.Label(self, text="Expense Value: ", font=BUTTON_FONT)
+        
+        #Entry boxes
+        employeeNumberEntry = tk.Entry(self)
+        expenseValueEntry = tk.Entry(self)
+        
+        #setup pointer to validation callback function
+        validationInt = self.register(Utilities.ValidateInt)
+        validationPosInt = self.register(Utilities.ValidatePositiveInt)
+        
+        #configure grid
+        titleLabel.grid(row=0, columnspan=3, sticky="E", padx=10, pady=10)
+        lblEmployeeNumber.grid(row=1, sticky="W")
+        lblExpenseValue.grid(row=2, sticky="W")
+        employeeNumberEntry.grid(row=1, column=2, sticky="W")
+        expenseValueEntry.grid(row=2, column=2, sticky="W")
+        menuButton.grid(row=3, column=0, sticky="NESW")
+        expenseButton.grid(row=3, column=2, sticky="NESW")
+        
+        #setup validation
+        employeeNumberEntry.config(validate="key", validatecommand=(validationInt, '%S'))
+        expenseValueEntry.config(validate="key", validatecommand=(validationPosInt, '%S'))
+    
+    #output method for expense button
+    def UpdateExpenses(self, employeeNum, expenses):
+        #run update method and show error if employee not found or another error occurs, more detailed log will be shown in terminal
+        if not Utilities.UpdateMonthlyExpenses(employeeNum, expenses, json_data):
+            messagebox.showerror("Error!", "Unable to locate employee in database,\n check the employee number or contact a system admin")
 
 #app config and loop run
 app = PayrollApp()

@@ -92,15 +92,25 @@ def UpdateMonthlyExpenses(expenseValue, employeeNum, data):
 		query = ("SELECT monthly_expenses FROM employees WHERE employee_number = %s")
 		cursor.execute(query, (employeeNum,));
 	
-		for (monthly_expenses,) in cursor:
-			expenses = monthly_expenses
+		#fetch one row of data
+		row = cursor.fetchone()
+  
+		##check for empty return
+		if row is None:
+			print("Unable to fetch monthly_expenses for employee: " + employeeNum)
+			cursor.close()
+			cnx.close()
+			return False
+	
+		expenses = row[0]
+		print("Employee: " + str(employeeNum) + " current expense: " + str(expenses))
    
    #error with query
 	except mysql.connector.Error as err:
 		print("Unable to fetch monthly_expenses for employee: " + employeeNum)
 		cursor.close()
 		cnx.close()
-		return;
+		return False
 
 	#update value
 	expenses += expenseValue
@@ -108,14 +118,18 @@ def UpdateMonthlyExpenses(expenseValue, employeeNum, data):
 	try:
 		query = ("UPDATE employees SET monthly_expenses = %s WHERE employee_number = %s")
 		cursor.execute(query, (expenses, employeeNum))
-  
-  	#error updating value
+		cnx.commit()
+		print("Employee: " + str(employeeNum) + " expenses updated to: " + str(expenses))
+		
+    	#error updating value
 	except mysql.connector.Error as err:
 		print("Fetched monthly expenese but could not update. employee:  " + employeeNum)
+		return False
   
   ##close connection and end
 	cursor.close()
 	cnx.close()
+	return True
 
  
   
@@ -157,3 +171,24 @@ def WriteEmployeePaylistToFile(employee, workingDaysInYear):
 	f = open("Employee" + employee.employeeNumber + "Payslip", "w")
 	f.write(outputString)
 	f.close()
+ 
+ #validates that an input is an integer
+def ValidateInt(input):
+    if input.isdigit() or input is "":
+        return True
+    else:
+        return False
+ 
+ #validates that an input is a positive only integer   
+def ValidatePositiveInt(input):
+    #check for int
+    if not ValidateInt(input):
+        return False;
+    
+    ##check for positive
+    if int(input) < 1:
+        return False;
+    
+    return True;
+    
+    
