@@ -29,7 +29,8 @@ def GetJsonData():
 		    'password': '',
 		    'host': '',
 			'database_name': '',
-			'working_days_in_year': 260.71
+			'working_days_in_year': 260.71,
+			'employee_contribution_percentage': 5
 			}
         
         with open('./appData.json', 'w') as outfile:
@@ -151,8 +152,9 @@ def CalculateMonthlyWage(yearlySalery, daysWorked, employeeNum, data):
 	
 	#calculate monthly wage before tax using number of days worked and working days in a year
 	taxRate = 0.00
-	monthlyWageBeforeTax = (yearlySalery*100 / data['working_days_in_year']) * daysWorked
- 
+	monthlyWageBeforeTax = ((yearlySalery*100 / data['working_days_in_year']) * 
+                         daysWorked) * ((100-data['employee_contribution_percentage'])/100)
+	
  
 	#locate tax bracket
 	if yearlySalery > 150000:
