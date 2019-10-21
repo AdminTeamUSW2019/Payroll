@@ -7,12 +7,11 @@ from decimal import Decimal
 
 #struct to hold employee data for the GUI
 class Employee:
-	def __init__(self, employeeNum, forename, surname, email_address, salary,dateStarted, daysWorked):
+	def __init__(self, employeeNum, forename, surname, email_address, salary, daysWorked):
 		self.forename = forename
 		self.surname = surname
 		self.email_address = email_address
 		self.salary = salary
-		self.dateStarted = dateStarted
 		self.employeeNumber = employeeNum
 		self.daysWorked = daysWorked
   
@@ -52,22 +51,21 @@ def GetEmployeeData(employeeNum, data):
 		cursor = cnx.cursor()
 
         #query database
-		query = ("SELECT employee_number, forename, surname, email_address, salary, dateStarted, days_worked_this_month FROM Employees WHERE employee_number = %s")
+		query = ("SELECT employee_number, forename, surname, email_address, salary, days_worked_this_month FROM Employees WHERE employee_number = %s")
 		cursor.execute(query, (employeeNum,));
 
         #debug output
-		for (employee_number,forename, surname, email_address, salary, dateStarted, days_worked_this_month) in cursor:
+		for (employee_number,forename, surname, email_address, salary, days_worked_this_month) in cursor:
 			print("-------------------------------")
 			print("Employee num: " + str(employee_number))
 			print("Forename: " + forename)
 			print("Surname: " + surname)
 			print("email addr: " + email_address)
 			print("salary: " + str(salary))
-			print("Date Hired:" + str(dateStarted))
 			print("Days worked this month: " + str(days_worked_this_month))
 
             #return employee data
-			tempEmployee = Employee(employeeNum, forename, surname, email_address, salary,dateStarted, days_worked_this_month)
+			tempEmployee = Employee(employeeNum, forename, surname, email_address, salary, days_worked_this_month)
    
 			cursor.close()
 			cnx.close()
@@ -178,7 +176,6 @@ def WriteEmployeePaylistToFile(employee, data):
                  "\nForename: " + employee.forename +
                  "\nSurname: " + employee.surname +
                  "\nEmail Addr: " + employee.email_address +
-                 "\nDate Hired: " + str(employee.dateStarted) +
                  "\n------------------------------------------" +
                  "\n\nYearly Salery: " + str(employee.salary) +
                  "\nDays worked (month): " + str(employee.daysWorked) +
