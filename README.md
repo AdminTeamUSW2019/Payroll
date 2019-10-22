@@ -26,3 +26,8 @@ CREATE TABLE IF NOT EXISTS employees (
     salery INT NOT NULL,
     days_worked_this_month INT NOT NULL,
     monthly_expenses INT NOT NULL DEFAULT 0);
+
+
+Example insert:
+INSERT INTO employees (forename, surname, email_address, salery, days_worked_this_month) VALUES
+'name', 'name', 'email', 40000, 14);
