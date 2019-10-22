@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS employees (
     forename VARCHAR(255) NOT NULL,
     surname VARCHAR(255) NOT NULL,
     email_address VARCHAR(255) NOT NULL,
-    salery INT NOT NULL,
+    salary INT NOT NULL,
     days_worked_this_month INT NOT NULL,
     monthly_expenses INT NOT NULL DEFAULT 0);
 
