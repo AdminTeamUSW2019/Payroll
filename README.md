@@ -29,5 +29,5 @@ CREATE TABLE IF NOT EXISTS employees (
 
 
 Example insert:
-INSERT INTO employees (forename, surname, email_address, salery, days_worked_this_month) VALUES
+INSERT INTO employees (forename, surname, email_address, salary, days_worked_this_month) VALUES
 'name', 'name', 'email', 40000, 14);
