@@ -52,13 +52,9 @@ def GetEmployeeData(employeeNum, data):
 		cursor = cnx.cursor()
 
         #query database
-<<<<<<< HEAD
-		query = ("SELECT employee_number, forename, surname, email_address, salary, days_worked_this_month FROM Employees WHERE employee_number = %s")
-		cursor.execute(query, (employeeNum,))
-=======
+
 		query = ("SELECT employee_number, forename, surname, email_address, salary, days_worked_this_month FROM employees WHERE employee_number = %s")
 		cursor.execute(query, (employeeNum,));
->>>>>>> 6bd600054fd4d54ced18314259a399ffa3384dc5
 
         #debug output
 		for (employee_number,forename, surname, email_address, salary, days_worked_this_month) in cursor:
