@@ -7,13 +7,13 @@ from decimal import Decimal
 
 #struct to hold employee data for the GUI
 class Employee:
-	def __init__(self, employeeNum, forename, surname, email_address, salary, daysWorked):
-		self.forename = forename
-		self.surname = surname
-		self.email_address = email_address
-		self.salary = salary
-		self.employeeNumber = employeeNum
-		self.daysWorked = daysWorked
+  def __init__(self, employeeNum, forename, surname, email_address, salary, daysWorked):
+    self.forename = forename
+    self.surname = surname
+    self.email_address = email_address
+    self.salary = salary
+    self.employeeNumber = employeeNum
+    self.daysWorked = daysWorked
   
 def GetJsonData():
     print("Loading...")
@@ -52,7 +52,9 @@ def GetEmployeeData(employeeNum, data):
 		cursor = cnx.cursor()
 
         #query database
-		query = ("SELECT employee_number, forename, surname, email_address, salary, days_worked_this_month FROM employees WHERE employee_number = %s")
+
+		query = ("SELECT employee_number, forename, surname, email_address, salary, days_worked_this_month FROM " +
+            data['database_table'] + " WHERE employee_number = %s")
 		cursor.execute(query, (employeeNum,));
 
         #debug output
@@ -88,7 +90,7 @@ def GetMonthlyExpenses(employeeNum, data):
 	expenses = -1
 	try:
 		#query database
-		query = ("SELECT monthly_expenses FROM employees WHERE employee_number = %s")
+		query = ("SELECT monthly_expenses FROM " + data['database_table'] + " WHERE employee_number = %s")
 		cursor.execute(query, (employeeNum,));
 	
 		#fetch one row of data
