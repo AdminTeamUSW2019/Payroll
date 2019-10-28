@@ -1,8 +1,8 @@
 {
-    "username": "sql2309393",
-    "password": "jS6!tJ8*",
-    "host": "sql2.freesqldatabase.com",
-    "database_name": "sql2309393",
+    "username": "team4",
+    "password": "team4",
+    "host": "192.168.56.102",
+    "database_name": "payroll",
     "working_days_in_year": 260.71,
     "employee_contribution_percentage": 5
 }
