@@ -1,6 +1,6 @@
 import tkinter as tk
-import Utilities
 from tkinter import messagebox
+import Utilities
  
  #initialize utilities and get json data
 json_data = Utilities.GetJsonData()
@@ -115,7 +115,7 @@ class PayslipPage(tk.Frame):
     #searches for an employee. is bound to searchButton
     def Search(self, forename, surname, yearlySalary, entryBox, expensesText):
         #read data from database
-        tempEmployee = Utilities.GetEmployeeData(entryBox.get(), json_data); #recieve data
+        tempEmployee = Utilities.GetEmployeeData(entryBox.get(), json_data) #recieve data
         
         #check for corrupted return
         if tempEmployee is None:
