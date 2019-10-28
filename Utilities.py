@@ -53,7 +53,8 @@ def GetEmployeeData(employeeNum, data):
 
         #query database
 
-		query = ("SELECT employee_number, forename, surname, email_address, salary, days_worked_this_month FROM employees WHERE employee_number = %s")
+		query = ("SELECT employee_number, forename, surname, email_address, salary, days_worked_this_month FROM " +
+            data['database_table'] + " WHERE employee_number = %s")
 		cursor.execute(query, (employeeNum,));
 
         #debug output
@@ -89,7 +90,7 @@ def GetMonthlyExpenses(employeeNum, data):
 	expenses = -1
 	try:
 		#query database
-		query = ("SELECT monthly_expenses FROM employees WHERE employee_number = %s")
+		query = ("SELECT monthly_expenses FROM " + data['database_table'] + " WHERE employee_number = %s")
 		cursor.execute(query, (employeeNum,));
 	
 		#fetch one row of data
