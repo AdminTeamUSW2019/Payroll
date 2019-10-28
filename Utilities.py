@@ -28,6 +28,7 @@ def GetJsonData():
 		    'password': '',
 		    'host': '',
 			'database_name': '',
+			'database_table': 'employees',
 			'working_days_in_year': 260.71,
 			'employee_contribution_percentage': 5
 			}
@@ -47,12 +48,17 @@ def GetEmployeeData(employeeNum, data):
     	#setup mysql connection
 	try:
         #setup connection
-		cnx = mysql.connector.connect(user=data['username'], database=data['database_name'], password=data['password'], host=data['host'], auth_plugin='mysql_native_password')
+		cnx = mysql.connector.connect(user=data['username'], database=data['database_name'], password=data['password'], host=data['host'])
 		cursor = cnx.cursor()
 
         #query database
+<<<<<<< HEAD
 		query = ("SELECT employee_number, forename, surname, email_address, salary, days_worked_this_month FROM Employees WHERE employee_number = %s")
 		cursor.execute(query, (employeeNum,))
+=======
+		query = ("SELECT employee_number, forename, surname, email_address, salary, days_worked_this_month FROM employees WHERE employee_number = %s")
+		cursor.execute(query, (employeeNum,));
+>>>>>>> 6bd600054fd4d54ced18314259a399ffa3384dc5
 
         #debug output
 		for (employee_number,forename, surname, email_address, salary, days_worked_this_month) in cursor:
