@@ -36,8 +36,14 @@ class PayrollApp(tk.Tk):
     def show_frame(self, cont):
         frame = self.frames[cont]
         frame.tkraise()
-        
 
+    #member function thats pops up a quit message
+    def quit(self):
+        if messagebox.askokcancel("Quit", "Do you want to quit?"):
+            self.destroy()
+
+
+    #tk.protocol("WM_DELETE_WINDOW", quit()) had to use a function to call this method, if you know how; try and get this to work
 
   #menu page of the application, can access either payslip screen or expense screen
 class MenuPage(tk.Frame):
@@ -62,7 +68,7 @@ class MenuPage(tk.Frame):
         
         #exit button
         exitButton = tk.Button(self, text="Quit",
-                               command = lambda: self.quit(),
+                               command = controller.quit,
                                font=BUTTON_FONT)
         exitButton.pack()
 
@@ -179,8 +185,14 @@ class ExpensePage(tk.Frame):
         if not Utilities.UpdateMonthlyExpenses(employeeNum, expenses, json_data):
             messagebox.showerror("Error!", "Unable to locate employee in database,\n check the employee number or contact a system admin")
 
+
+def close():
+    PayrollApp.quit(app)
+
 #app config and loop run
 app = PayrollApp()
 app.geometry("400x300")
 app.resizable(width=False, height=False)
+app.protocol("WM_DELETE_WINDOW", close)
+app.title("Payrol")
 app.mainloop()
