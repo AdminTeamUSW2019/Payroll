@@ -14,11 +14,11 @@ class ImageApp(tk.Tk):
         container.grid_columnconfigure(0, weight=1)
 
         self.frames = {}
-        for F in (ImagePage):
+        for F in (ImagePage, DummyPage):
 
             frame = F(container, self)
+            self.frames[F] = frame
             frame.grid(row=0, column=0, sticky="nsew")
-            self.show_frame(ImagePage)
 
         self.show_frame(ImagePage)
 
@@ -32,8 +32,21 @@ class ImagePage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
 
-        label = tk.Label(self, text="Hello!", font=LARGE_FONT)
-        label.pack(pady=10, padx=10)
+        image1 = tk.PhotoImage(file="./British_pound.png")
+       # label1 = tk.Label(self, image=image1)
+       # label1.pack()
+
+
+        canv = tk.Canvas(self, width=500, height=500, bg='grey')
+        canv.pack()
+
+        canv.create_image(20, 20, anchor='w', image=image1)
+
+
+
+class DummyPage(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
 
 
 app = ImageApp()
