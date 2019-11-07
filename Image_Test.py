@@ -32,15 +32,15 @@ class ImagePage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
 
-        image1 = tk.PhotoImage(file="./British_pound.png")
-       # label1 = tk.Label(self, image=image1)
-       # label1.pack()
+        self.image1 = tk.PhotoImage(file="./British_pound.png")
+        label1 = tk.Label(self, image=self.image1)
+        label1.pack()
 
 
         canv = tk.Canvas(self, width=500, height=500, bg='grey')
         canv.pack()
 
-        canv.create_image(20, 20, anchor='w', image=image1)
+        canv.create_image(20, 20, anchor='w', image=self.image1)
 
 
 
