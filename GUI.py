@@ -51,9 +51,8 @@ class MenuPage(tk.Frame):
         #image
         self.image1 = tk.PhotoImage(file="./British_pound.png")
         label1 = tk.Label(self, image=self.image1)
-        label1.pack()
         
-        canv = tk.Canvas(self, width=500, height=500)
+        canv = tk.Canvas(self, width=20, height=20)
         canv.pack()
 
         canv.create_image(20, 20, anchor='w', image=self.image1)
