@@ -203,7 +203,7 @@ def ValidatePositiveInt(input):
         return False;
     
     ##check for positive
-    if int(input) < 1:
+    if int(input) < 0:
         return False;
     
     return True;
