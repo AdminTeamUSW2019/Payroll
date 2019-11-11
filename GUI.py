@@ -48,6 +48,16 @@ class MenuPage(tk.Frame):
         label = tk.Label(self, text="Payroll Application!", font=LARGE_FONT)
         label.pack(pady=10,padx=10)
 
+        #image
+        self.image1 = tk.PhotoImage(file="./British_pound.png")
+        label1 = tk.Label(self, image=self.image1)
+        label1.pack()
+        
+        canv = tk.Canvas(self, width=500, height=500)
+        canv.pack()
+
+        canv.create_image(20, 20, anchor='w', image=self.image1)
+        
         #nav button 1
         payslipButton = tk.Button(self, text="Payslip",
                             command=lambda: controller.show_frame(PayslipPage),
