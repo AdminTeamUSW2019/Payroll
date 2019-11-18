@@ -80,8 +80,6 @@ class MenuPage(tk.Frame):
                                command = lambda: self.quit(),
                                font=BUTTON_FONT, image=self.image1, compound=tk.CENTER)
 
-                               command = controller.quit,
-                               font=BUTTON_FONT)
 
         exitButton.pack()
 
