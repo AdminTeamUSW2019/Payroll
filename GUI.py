@@ -37,7 +37,20 @@ class PayrollApp(tk.Tk):
         frame = self.frames[cont]
         frame.tkraise()
 
+
  #menu page of the application, can access either payslip screen or expense screen
+
+
+    #member function thats pops up a quit message
+    def quit(self):
+        if messagebox.askokcancel("Quit", "Do you want to quit?"):
+            self.destroy()
+
+
+    #tk.protocol("WM_DELETE_WINDOW", quit()) had to use a function to call this method, if you know how; try and get this to work
+
+  #menu page of the application, can access either payslip screen or expense screen
+
 class MenuPage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self,parent)
@@ -48,7 +61,7 @@ class MenuPage(tk.Frame):
         #title
         label = tk.Label(self, text="Payroll Application!", font=LARGE_FONT)
         label.pack(pady=10,padx=10)
-
+        
         #nav button 1
         payslipButton = tk.Button(self, text="Payslip",
                             command=lambda: controller.show_frame(PayslipPage),
@@ -63,8 +76,13 @@ class MenuPage(tk.Frame):
 
         #exit button
         exitButton = tk.Button(self, text="Quit",
+
                                command = lambda: self.quit(),
                                font=BUTTON_FONT, image=self.image1, compound=tk.CENTER)
+
+                               command = controller.quit,
+                               font=BUTTON_FONT)
+
         exitButton.pack()
 
 #Page that handles generating a payslip for the given employee number
@@ -184,11 +202,18 @@ class ExpensePage(tk.Frame):
         if not Utilities.UpdateMonthlyExpenses(employeeNum, expenses, json_data):
             messagebox.showerror("Error!", "Unable to locate employee in database,\n check the employee number or contact a system admin")
 
+
+def close():
+    PayrollApp.quit(app)
+
 #app config and loop run
 app = PayrollApp()
 
 app.geometry("400x300")
 
 app.resizable(width=False, height=False)
+
+app.protocol("WM_DELETE_WINDOW", close)
+app.title("Payrol")
 
 app.mainloop()
