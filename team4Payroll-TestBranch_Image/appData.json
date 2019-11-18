@@ -1,9 +1,0 @@
-{
-    "username": "team4",
-    "password": "team4",
-    "host": "192.168.56.102",
-    "database_name": "payroll",
-    "database_table": "employees",
-    "working_days_in_year": 260.71,
-    "employee_contribution_percentage": 5
-}
