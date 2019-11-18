@@ -1,0 +1,9 @@
+{
+    "username": "",
+    "password": "",
+    "host": "",
+    "database_name": "",
+    "database_table": "employees",
+    "working_days_in_year": 260.71,
+    "employee_contribution_percentage": 5
+}
