@@ -77,7 +77,7 @@ class MenuPage(tk.Frame):
         #exit button
         exitButton = tk.Button(self, text="Quit",
 
-                               command = lambda: self.quit(),
+                               command = lambda: controller.quit(),
                                font=BUTTON_FONT, image=self.image1, compound=tk.CENTER)
 
 
