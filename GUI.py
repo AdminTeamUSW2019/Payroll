@@ -141,7 +141,7 @@ class ExpensePage(tk.Frame):
         titleLabel = tk.Label(self, text="Expense Management", font=LARGE_FONT)
 
         #image setup
-        self.image1 = tk.PhotoImage(file="./Button_Texture2.png")
+        self.image1 = tk.PhotoImage(file="./Button_Texture3.png")
 
         #button to return to the menu page
         menuButton = tk.Button(self, text="Menu",
