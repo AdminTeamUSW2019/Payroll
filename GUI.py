@@ -127,7 +127,7 @@ class PayslipPage(tk.Frame):
         yearlySalary.grid(row=4, sticky="W", padx=(0, 115), columnspan=3)
         expensesText.grid(row=5, sticky="W")
         generateButton.grid(row=6, sticky="W")
-        menuButton.grid(row=7, sticky="S",columnspan=3, pady=(0, 0), padx=(30, 0))
+        menuButton.grid(row=6, sticky="S",columnspan=3, pady=(0, 0), padx=(30, 0))
 
         ##enable validation on entry box
         entryBox.config(validate="key", validatecommand=(validation, '%S'))
