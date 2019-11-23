@@ -22,14 +22,14 @@ class PayrollApp(tk.Tk):
 
         #setup all frames for the application
         self.frames = {}
-        for F in (MenuPage, PayslipPage, ExpensePage):
+        for F in (LoginPage,MenuPage, PayslipPage, ExpensePage):
 
             frame = F(container, self)
             self.frames[F] = frame
             frame.grid(row=0, column=0, sticky="nsew")
 
         #select default screen
-        self.show_frame(MenuPage)
+        self.show_frame(LoginPage)
 
     #show's specified frame
     def show_frame(self, cont):
@@ -48,9 +48,56 @@ class PayrollApp(tk.Tk):
 
 
     #tk.protocol("WM_DELETE_WINDOW", quit()) had to use a function to call this method, if you know how; try and get this to work
+    
+# Login Page of the application, can access to mainpage if username and password is correct
+class LoginPage(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        self._controller = controller
 
+
+        global username_verify
+        global password_verify
+
+        username_verify = tk.StringVar()
+        password_verify = tk.StringVar()
+
+
+        # title label
+        label = tk.Label(self, text="Login", font=LARGE_FONT)
+        label.pack(pady=10, padx=10)
+
+        # labels
+        label1 = tk.Label(self, text="Username:")
+        label1.config(font=("Arial", 15))
+        label1.place(x=50, y=120)
+
+        label2 = tk.Label(self, text="Password:")
+        label2.config(font=("Arial", 15))
+        label2.place(x=50, y=175)
+
+        # Entry Box
+        login_box = tk.Entry(self)
+        login_box.place(x=170, y=125)
+        password_box = tk.Entry(self)
+        password_box.place(x=170, y=180)
+
+        # button
+        self.login_entry = tk.Entry(self)
+        self.login_entry.place(x=170, y=125)
+        self.password_entry = tk.Entry(self, show='*')
+        self.password_entry.place(x=170, y=180)
+
+        btn_login = tk.Button(self, text="login", font=BUTTON_FONT, command=self.login_Button)
+        btn_login.place(x=200, y=220)
+
+    def login_Button(self):
+        # login validation
+        if Utilities.login_verification(self.login_entry.get(), self.password_entry.get()):
+            self._controller.show_frame(MenuPage)
+        else: messagebox.showerror("Error", "Incorrect username or password")
+    
   #menu page of the application, can access either payslip screen or expense screen
-
 class MenuPage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self,parent)
