@@ -81,14 +81,17 @@ class LoginPage(tk.Frame):
         login_box.place(x=170, y=125)
         password_box = tk.Entry(self)
         password_box.place(x=170, y=180)
-
+        
+        #image setup
+        self.image1 = tk.PhotoImage(file="./Button_Texture2.png")
+        
         # button
         self.login_entry = tk.Entry(self)
         self.login_entry.place(x=170, y=125)
         self.password_entry = tk.Entry(self, show='*')
         self.password_entry.place(x=170, y=180)
 
-        btn_login = tk.Button(self, text="login", font=BUTTON_FONT, command=self.login_Button)
+        btn_login = tk.Button(self, text="Login", font=BUTTON_FONT, image.self=image1, compound=tk.CENTER, command=self.login_Button)
         btn_login.place(x=200, y=220)
 
     def login_Button(self):
