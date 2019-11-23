@@ -4,6 +4,8 @@ import json
 import os.path
 import math
 from decimal import Decimal
+import sqlite3
+NAME_DATABASE = 'user.db'
 
 #struct to hold employee data for the GUI
 class Employee:
@@ -14,7 +16,33 @@ class Employee:
     self.salary = salary
     self.employeeNumber = employeeNum
     self.daysWorked = daysWorked
-  
+
+def Database():
+    # create table for username and password
+    conn = sqlite3.connect(NAME_DATABASE)
+    print("Opened database successfully")
+
+    conn.execute('''CREATE TABLE IF NOT EXISTS USER
+            (ID INT PRIMARY KEY     NOT NULL,
+            USERNAME           TEXT    NOT NULL,
+            PASSWORD            TEXT     NOT NULL
+            );''')
+    conn.close()
+
+# verification login true if user exist else false
+def login_verification(USERNAME, PASSWORD):
+    Database()
+    login_Result = False
+    conn = sqlite3.connect(NAME_DATABASE)
+    print(USERNAME, PASSWORD)
+    cursor = conn.execute("SELECT id, username,password from USER")
+    for row in cursor:
+        if USERNAME == row[1] and PASSWORD == row[2]:
+            login_Result = True
+    conn.close()
+    return login_Result  
+
+
 def GetJsonData():
     print("Loading...")
 
