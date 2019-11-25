@@ -106,6 +106,12 @@ class PayslipPage(tk.Frame):
                                   command=lambda: self.Search(forename, surname, yearlySalary,
                                                                entryBox, expensesText))
 
+        #button to add records to the database
+        addButton = tk.Button(self, text="Add", font=BUTTON_FONT, image=self.image1, compound=tk.CENTER)
+        
+        #button to delete records from the database
+        deleteButton = tk.Button(self, tex="Delete", font=BUTTON_FONT, image=self.image1, compound=tk.CENTER)
+        
         #labels
         employeeLabel = tk.Label(self, text="Enter employee number", font=BUTTON_FONT)
         entryBox = tk.Entry(self)
