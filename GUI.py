@@ -110,7 +110,8 @@ class PayslipPage(tk.Frame):
         addButton = tk.Button(self, text="Add", font=BUTTON_FONT, image=self.image1, compound=tk.CENTER)
         
         #button to delete records from the database
-        deleteButton = tk.Button(self, tex="Delete", font=BUTTON_FONT, image=self.image1, compound=tk.CENTER)
+        removeButton = tk.Button(self, text="Remove", font=BUTTON_FONT, image=self.image1, compound=tk.CENTER,
+                              command=lambda: self.Remove())
         
         #labels
         employeeLabel = tk.Label(self, text="Enter employee number", font=BUTTON_FONT)
@@ -132,6 +133,8 @@ class PayslipPage(tk.Frame):
         expensesText.grid(row=5, sticky="W")
         generateButton.grid(row=6, sticky="W")
         menuButton.grid(row=6, sticky="S",columnspan=3, pady=(0, 0), padx=(30, 0))
+        addButton.grid(row=7, sticky="W")
+        removeButton.grid(row=7, sticky="S")
 
         ##enable validation on entry box
         entryBox.config(validate="key", validatecommand=(validation, '%S'))
