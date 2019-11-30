@@ -190,6 +190,16 @@ def WriteEmployeePaylistToFile(employee, data):
 	f.write(outputString)
 	f.close()
  
+#deletes an employee record from the database (based on the employee number typed into Payslip)
+def DeleteEmployeeRecord(employeeNum, data):
+	try:
+		# setup connection
+		cnx = mysql.connector.connect(user=data['username'], database=data['database_name'], password=data['password'],
+									  host=data['host'])
+		cursor = cnx.cursor()
+
+		#query database
+		query = ("DELETE FROM" + data['database_table'] + "WHERE employee number = " + employeeNum)
  
  #validates that an input is an integer
 def ValidateInt(input):
