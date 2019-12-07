@@ -4,8 +4,7 @@ import json
 import os.path
 import math
 from decimal import Decimal
-import sqlite3
-NAME_DATABASE = 'user.db'
+import hashlib
 
 #struct to hold employee data for the GUI
 class Employee:
@@ -17,30 +16,41 @@ class Employee:
     self.employeeNumber = employeeNum
     self.daysWorked = daysWorked
 
-def Database():
-    # create table for username and password
-    conn = sqlite3.connect(NAME_DATABASE)
-    print("Opened database successfully")
+def login_verification(username, password, data):
 
-    conn.execute('''CREATE TABLE IF NOT EXISTS USER
-            (ID INT PRIMARY KEY     NOT NULL,
-            USERNAME           TEXT    NOT NULL,
-            PASSWORD            TEXT     NOT NULL
-            );''')
-    conn.close()
+	#setup connection
+	cnx = mysql.connector.connect(user=data['username'], database=data['database_name'], password=data['password'], host=data['host'])
+	cursor = cnx.cursor()
 
-# verification login true if user exist else false
-def login_verification(USERNAME, PASSWORD):
-    Database()
-    login_Result = False
-    conn = sqlite3.connect(NAME_DATABASE)
-    print(USERNAME, PASSWORD)
-    cursor = conn.execute("SELECT id, username,password from USER")
-    for row in cursor:
-        if USERNAME == row[1] and PASSWORD == row[2]:
-            login_Result = True
-    conn.close()
-    return login_Result
+	#set login rsult as false
+	login_Result = False
+	
+	#query database
+	query = ("SELECT user_number, username, password FROM login")
+	cursor.execute(query)
+
+	#fetch data result
+	records = cursor.fetchall()
+
+	for row in records:
+		if username == row[1] and password == row[2]:
+			login_Result = True
+			
+	cursor.close()
+	cnx.close()
+	return login_Result
+
+#return user hashed password
+def hash_password(username, password, data):
+
+	#fetch user unique code
+    salt = get_salt(username,data)[0]
+    return hashlib.sha256(salt.encode() + password.encode()).hexdigest() + salt
+
+def get_salt(username, data):
+	#setup connection
+    cnx = mysql.connector.connect(user=data['username'], database=data['database_name'], password=data['password'], host=data['host'])
+    cursor = cnx.cursor()
 
 def GetJsonData():
     print("Loading...")
@@ -65,7 +75,7 @@ def GetJsonData():
 		#exit program
         exit(0)
 
-
+	
 	#Open File
     with open("./appData.json") as json_file:
         data = json.load(json_file)
