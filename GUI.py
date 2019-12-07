@@ -55,14 +55,6 @@ class LoginPage(tk.Frame):
         tk.Frame.__init__(self, parent)
         self._controller = controller
 
-
-        global username_verify
-        global password_verify
-
-        username_verify = tk.StringVar()
-        password_verify = tk.StringVar()
-
-
         # title label
         label = tk.Label(self, text="Login", font=LARGE_FONT)
         label.pack(pady=10, padx=10)
@@ -86,19 +78,23 @@ class LoginPage(tk.Frame):
         self.image1 = tk.PhotoImage(file="./Button_Texture2.png")
         
         # button
-        self.login_entry = tk.Entry(self)
-        self.login_entry.place(x=170, y=125)
+        self.username_entry = tk.Entry(self)
+        self.username_entry.place(x=170, y=125)
         self.password_entry = tk.Entry(self, show='*')
         self.password_entry.place(x=170, y=180)
 
-        btn_login = tk.Button(self, text="Login", font=BUTTON_FONT, image.self=image1, compound=tk.CENTER, command=self.login_Button)
-        btn_login.place(x=200, y=220)
-
+        btn_login = tk.Button(self, text="Login", font=BUTTON_FONT, image = self.image1, compound=tk.CENTER, command=self.login_Button)
+        btn_login.place(x=170, y=220)
+        
+    # login validation
     def login_Button(self):
-        # login validation
-        if Utilities.login_verification(self.login_entry.get(), self.password_entry.get()):
-            self._controller.show_frame(MenuPage)
-        else: messagebox.showerror("Error", "Incorrect username or password")
+        #hashing password
+        password_hashed = Utilities.hash_password(self.username_entry.get(), self.password_entry.get(),json_data )
+
+        if Utilities.login_verification(self.username_entry.get(), password_hashed, json_data):
+             self._controller.show_frame(MenuPage)
+        else:
+            messagebox.showerror("Error", "Incorrect username or password")
     
   #menu page of the application, can access either payslip screen or expense screen
 class MenuPage(tk.Frame):
@@ -123,15 +119,6 @@ class MenuPage(tk.Frame):
                             command=lambda: controller.show_frame(ExpensePage),
                             font=BUTTON_FONT, image=self.image1, compound=tk.CENTER)
         expensesButton.pack()
-
-        #exit button
-        exitButton = tk.Button(self, text="Quit",
-
-                               command = lambda: controller.quit(),
-                               font=BUTTON_FONT, image=self.image1, compound=tk.CENTER)
-
-
-        exitButton.pack()
 
 #Page that handles generating a payslip for the given employee number
 class PayslipPage(tk.Frame):
