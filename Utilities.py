@@ -52,6 +52,18 @@ def get_salt(username, data):
     cnx = mysql.connector.connect(user=data['username'], database=data['database_name'], password=data['password'], host=data['host'])
     cursor = cnx.cursor()
 
+	#query database
+    query = ("SELECT salt FROM login WHERE username = %s ")
+    cursor.execute(query, (username,))
+
+	#fetch one row of data
+    myResult = cursor.fetchall()
+
+    for row in myResult:
+        return row
+
+    return myResult
+
 def GetJsonData():
     print("Loading...")
 
