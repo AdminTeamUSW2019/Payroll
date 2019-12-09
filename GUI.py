@@ -23,7 +23,7 @@ class PayrollApp(tk.Tk):
         #setup all frames for the application
         self.frames = {}
         for F in (LoginPage,MenuPage, PayslipPage, ExpensePage):
-
+    
             frame = F(container, self)
             self.frames[F] = frame
             frame.grid(row=0, column=0, sticky="nsew")
@@ -119,6 +119,15 @@ class MenuPage(tk.Frame):
                             command=lambda: controller.show_frame(ExpensePage),
                             font=BUTTON_FONT, image=self.image1, compound=tk.CENTER)
         expensesButton.pack()
+        
+                #exit button
+        exitButton = tk.Button(self, text="Quit",
+
+                               command = lambda: controller.quit(),
+                               font=BUTTON_FONT, image=self.image1, compound=tk.CENTER)
+
+
+        exitButton.pack()
 
 #Page that handles generating a payslip for the given employee number
 class PayslipPage(tk.Frame):
