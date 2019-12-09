@@ -246,14 +246,14 @@ def EditEmployeeRecord(employeeNo, forename, surname, email, salary, days, data)
 
 #validates that an input is an integer
 def ValidateInt(input):
-    if input.isdigit() or input is "":
+    if input.isdigit() or input == "":
         return True
     else:
         return False
  
  #validates that a string has been entered at all
 def ValidateEntry(input):
-    if input is "":
+    if input == "":
         return False
     else:
         return True
