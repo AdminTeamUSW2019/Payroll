@@ -6,6 +6,7 @@ import math
 from decimal import Decimal
 import hashlib
 
+
 #struct to hold employee data for the GUI
 class Employee:
   def __init__(self, employeeNum, forename, surname, email_address, salary, daysWorked):
@@ -63,6 +64,7 @@ def get_salt(username, data):
         return row
 
     return myResult
+
 
 def GetJsonData():
     print("Loading...")
