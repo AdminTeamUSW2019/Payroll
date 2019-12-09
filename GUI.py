@@ -22,7 +22,7 @@ class PayrollApp(tk.Tk):
 
         #setup all frames for the application
         self.frames = {}
-        for F in (MenuPage, PayslipPage, ExpensePage, AddEmployeePage):
+        for F in (MenuPage, PayslipPage, ExpensePage, AddEditEmployeePage):
 
             frame = F(container, self)
             self.frames[F] = frame
