@@ -22,7 +22,7 @@ class PayrollApp(tk.Tk):
 
         #setup all frames for the application
         self.frames = {}
-        for F in (MenuPage, PayslipPage, ExpensePage):
+        for F in (MenuPage, PayslipPage, ExpensePage, AddEmployeePage):
 
             frame = F(container, self)
             self.frames[F] = frame
@@ -76,7 +76,6 @@ class MenuPage(tk.Frame):
 
         #exit button
         exitButton = tk.Button(self, text="Quit",
-
                                command = lambda: controller.quit(),
                                font=BUTTON_FONT, image=self.image1, compound=tk.CENTER)
 
@@ -107,7 +106,8 @@ class PayslipPage(tk.Frame):
                                                                entryBox, expensesText))
 
         #button to add records to the database
-        addButton = tk.Button(self, text="Add", font=BUTTON_FONT, image=self.image1, compound=tk.CENTER)
+        addEditButton = tk.Button(self, text="Add/Edit", font=BUTTON_FONT, image=self.image1, compound=tk.CENTER,
+                              command=lambda: controller.show_frame(AddEditEmployeePage))
         
         #button to delete records from the database
         removeButton = tk.Button(self, text="Remove", font=BUTTON_FONT, image=self.image1, compound=tk.CENTER,
@@ -134,7 +134,7 @@ class PayslipPage(tk.Frame):
         generateButton.grid(row=6, sticky="W")
         menuButton.grid(row=6, sticky="S",columnspan=3, pady=(0, 0), padx=(30, 0))
         addButton.grid(row=7, sticky="W")
-        removeButton.grid(row=7, sticky="S")
+        removeButton.grid(row=7, sticky="S", columnspan=3, pady=(0, 0), padx=(30, 0))
 
         ##enable validation on entry box
         entryBox.config(validate="key", validatecommand=(validation, '%S'))
@@ -157,6 +157,84 @@ class PayslipPage(tk.Frame):
         expensesText.configure(text="Expenses due: " + str(Utilities.GetMonthlyExpenses(tempEmployee.employeeNumber, json_data)))
 
         Utilities.WriteEmployeePaylistToFile(tempEmployee, json_data)
+
+    def Remove(self):
+        if messagebox.askokcancel("!!!Warning!!!", "Delete this record? You won't be able to recover it."):
+            Utilities.DeleteEmployeeRecord(entrybox.get(), json_data)
+
+#Screen to add new records to the Employee table
+class AddEditEmployeePage(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+
+        #title
+        titleLabel = tk.Label(self, text="Add Employee", font=LARGE_FONT)
+
+        #image setup
+        self.image1 = tk.PhotoImage(file="./Button_Texture2.png")
+
+        #entry box labels
+        labelNumber = tk.Label(self, text="Employee Number [Edit]", font=BUTTON_FONT)
+        labelForename = tk.Label(self, text="Forename", font=BUTTON_FONT)
+        labelSurname = tk.Label(self, text="Surname", font=BUTTON_FONT)
+        labelEmail = tk.Label(self, text="E-mail", font=BUTTON_FONT)
+        labelSalary = tk.Label(self, text="Salary", font=BUTTON_FONT)
+        labelDays = tk.Label(self, text="Days Worked", font=BUTTON_FONT)
+
+        #entry box setup
+        entryNumber = tk.Entry(self)
+        entryForename = tk.Entry(self)
+        entrySurname = tk.Entry(self)
+        entryEmail = tk.Entry(self)
+        entrySalary = tk.Entry(self)
+        entryDays = tk.Entry(self)
+
+        #setup pointer to validation callback functions
+        validation = self.register(Utilities.ValidateEntry)
+        validationInt = self.register(Utilities.ValidatePositiveInt)
+
+        #button setup
+        addButton = tk.Button(self, text="Add", font=BUTTON_FONT, image=self.image1, compound=tk.CENTER,
+                                  command=lambda: self.addEmployee())
+        editButton = tk.Button(self, text="Edit", font=BUTTON_FONT, image=self.image1, compound=tk.CENTER, 
+                               command=lambda: editEmployee())
+        backButton = tk.Button(self, text="Back", font=BUTTON_FONT, image=self.image1, compound=tk.CENTER,
+                               command=lambda: controller.show_frame(PayslipPage))
+
+        #grid setup
+        titleLabel.grid(row=0, sticky="N", pady=(0, 0), padx=(75, 0))
+        labelNumber.grid(row=1, sticky="W")
+        entryNumber.grid(row=1, sticky="W", pady=(0, 0), padx=(135, 0))
+        labelForename.grid(row=2, sticky="W")
+        entryForename.grid(row=2, sticky="W", pady=(0, 0), padx=(135, 0))
+        labelSurname.grid(row=3, sticky="W")
+        entrySurname.grid(row=3, sticky="W", pady=(0, 0), padx=(135, 0))
+        labelEmail.grid(row=4, sticky="W")
+        entryEmail.grid(row=4, sticky="W", pady=(0, 0), padx=(135, 0))
+        labelSalary.grid(row=5, sticky="W")
+        entrySalary.grid(row=5, sticky="W", pady=(0, 0), padx=(135, 0))
+        labelDays.grid(row=6, sticky="W")
+        entryDays.grid(row=6, sticky="W", pady=(0, 0), padx=(135, 0))
+        backButton.grid(row=7, sticky="W", pady=(35, 0), padx=(0, 0))
+        addButton.grid(row=8, sticky="W", pady=(35, 0), padx=(0, 0))
+        editButton.grid(row=8, sticky="W", pady=(35, 0), padx=(0, 0))
+
+        #enable validation on entry boxes
+        entryForename.config(validate="key", validatecommand=(validation, '%S'))
+        entrySurname.config(validate="key", validatecommand=(validation, '%S'))
+        entryEmail.config(validate="key", validatecommand=(validation, '%S'))
+        entrySalary.config(validate="key", validatecommand=(validationInt, '%S'))
+        entryDays.config(validate="key", validatecommand=(validationInt, '%S'))
+        entryNumber.config(validate="key", validatecommand=(validation, '%S'))
+
+        #define method for adding employee records
+        def addEmployee():
+            if messagebox.askokcancel("Warning", "Add this to employee records?"):
+                Utilities.AddEmployeeRecord(entryForename.get(), entrySurname.get(), entryEmail.get(), entrySalary.get(), entryDays.get(), json_data)
+
+        def editEmployee():
+            if messagebox.askokcancel("Warning", "Edit this employee record?"):
+                Utilities.EditEmployeeRecord(entryNumber.get(), entryForename.get(), entrySurname.get(), entryEmail.get(), entrySalary.get(), entryDays.get(), json_data)
 
 #Screen to add or remove expenses from a employee
 class ExpensePage(tk.Frame):
@@ -216,7 +294,7 @@ def close():
 #app config and loop run
 app = PayrollApp()
 
-app.geometry("400x300")
+app.geometry("400x350")
 
 app.resizable(width=False, height=False)
 
