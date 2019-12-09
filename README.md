@@ -31,3 +31,8 @@ CREATE TABLE IF NOT EXISTS employees (
 Example insert:
 INSERT INTO employees (forename, surname, email_address, salary, days_worked_this_month) VALUES
 'name', 'name', 'email', 40000, 14);
+
+For Login table
+CREATE TABLE IF NOT EXISTS login ( user_number INT AUTO_INCREMENT PRIMARY KEY, username VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, salt VARCHAR(255) NOT NULL);
+
+ INSERT INTO  login (username, password, salt) VALUES ('admin', 'a6150906add78d1e8955f8e232dbe328316d481bdd1e5c781659d44a0d59506784f33d96d463457aa5bc22cf3c4cacd1' ,'84f33d96d463457aa5bc22cf3c4cacd1');
