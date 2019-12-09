@@ -4,6 +4,8 @@ import json
 import os.path
 import math
 from decimal import Decimal
+import hashlib
+
 
 #struct to hold employee data for the GUI
 class Employee:
@@ -14,7 +16,56 @@ class Employee:
     self.salary = salary
     self.employeeNumber = employeeNum
     self.daysWorked = daysWorked
-  
+
+def login_verification(username, password, data):
+
+	#setup connection
+	cnx = mysql.connector.connect(user=data['username'], database=data['database_name'], password=data['password'], host=data['host'])
+	cursor = cnx.cursor()
+
+	#set login rsult as false
+	login_Result = False
+	
+	#query database
+	query = ("SELECT user_number, username, password FROM login")
+	cursor.execute(query)
+
+	#fetch data result
+	records = cursor.fetchall()
+
+	for row in records:
+		if username == row[1] and password == row[2]:
+			login_Result = True
+			
+	cursor.close()
+	cnx.close()
+	return login_Result
+
+#return user hashed password
+def hash_password(username, password, data):
+
+	#fetch user unique code
+    salt = get_salt(username,data)[0]
+    return hashlib.sha256(salt.encode() + password.encode()).hexdigest() + salt
+
+def get_salt(username, data):
+	#setup connection
+    cnx = mysql.connector.connect(user=data['username'], database=data['database_name'], password=data['password'], host=data['host'])
+    cursor = cnx.cursor()
+
+	#query database
+    query = ("SELECT salt FROM login WHERE username = %s ")
+    cursor.execute(query, (username,))
+
+	#fetch one row of data
+    myResult = cursor.fetchall()
+
+    for row in myResult:
+        return row
+
+    return myResult
+
+
 def GetJsonData():
     print("Loading...")
 
@@ -38,7 +89,7 @@ def GetJsonData():
 		#exit program
         exit(0)
 
-
+	
 	#Open File
     with open("./appData.json") as json_file:
         data = json.load(json_file)
