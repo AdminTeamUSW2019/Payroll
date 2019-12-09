@@ -6,6 +6,7 @@ import math
 from decimal import Decimal
 import hashlib
 
+#Example comment to demonstrate git
 
 #struct to hold employee data for the GUI
 class Employee:
