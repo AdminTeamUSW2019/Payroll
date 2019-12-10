@@ -133,7 +133,7 @@ class PayslipPage(tk.Frame):
         expensesText.grid(row=5, sticky="W")
         generateButton.grid(row=6, sticky="W")
         menuButton.grid(row=6, sticky="S",columnspan=3, pady=(0, 0), padx=(30, 0))
-        addButton.grid(row=7, sticky="W")
+        addEditButton.grid(row=7, sticky="W")
         removeButton.grid(row=7, sticky="S", columnspan=3, pady=(0, 0), padx=(30, 0))
 
         ##enable validation on entry box
@@ -174,7 +174,7 @@ class AddEditEmployeePage(tk.Frame):
         self.image1 = tk.PhotoImage(file="./Button_Texture2.png")
 
         #entry box labels
-        labelNumber = tk.Label(self, text="Employee Number [Edit]", font=BUTTON_FONT)
+        labelNumber = tk.Label(self, text="Employee Number", font=BUTTON_FONT)
         labelForename = tk.Label(self, text="Forename", font=BUTTON_FONT)
         labelSurname = tk.Label(self, text="Surname", font=BUTTON_FONT)
         labelEmail = tk.Label(self, text="E-mail", font=BUTTON_FONT)
@@ -195,7 +195,7 @@ class AddEditEmployeePage(tk.Frame):
 
         #button setup
         addButton = tk.Button(self, text="Add", font=BUTTON_FONT, image=self.image1, compound=tk.CENTER,
-                                  command=lambda: self.addEmployee())
+                                  command=lambda: addEmployee())
         editButton = tk.Button(self, text="Edit", font=BUTTON_FONT, image=self.image1, compound=tk.CENTER, 
                                command=lambda: editEmployee())
         backButton = tk.Button(self, text="Back", font=BUTTON_FONT, image=self.image1, compound=tk.CENTER,
@@ -215,9 +215,9 @@ class AddEditEmployeePage(tk.Frame):
         entrySalary.grid(row=5, sticky="W", pady=(0, 0), padx=(135, 0))
         labelDays.grid(row=6, sticky="W")
         entryDays.grid(row=6, sticky="W", pady=(0, 0), padx=(135, 0))
-        backButton.grid(row=7, sticky="W", pady=(35, 0), padx=(0, 0))
-        addButton.grid(row=8, sticky="W", pady=(35, 0), padx=(0, 0))
-        editButton.grid(row=8, sticky="W", pady=(35, 0), padx=(0, 0))
+        backButton.grid(row=7, sticky="W", pady=(0, 0), padx=(0, 0))
+        addButton.grid(row=8, sticky="W", pady=(0, 0), padx=(0, 0))
+        editButton.grid(row=8, sticky="W", pady=(0, 0), padx=(135, 0))
 
         #enable validation on entry boxes
         entryForename.config(validate="key", validatecommand=(validation, '%S'))
