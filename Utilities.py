@@ -194,55 +194,55 @@ def WriteEmployeePaylistToFile(employee, data):
 def DeleteEmployeeRecord(employeeNum, data):
     try:
         #setup connection
-        cnx = mysql.connector.connect(user=data['username'], database=data['database_name'], password=data[password], host=data['host'])
+        cnx = mysql.connector.connect(user=data['username'], database=data['database_name'], password=data['password'], host=data['host'], auth_plugin='mysql_native_password')
         cursor = cnx.cursor()
 
         #qeury database
         query = ("DELETE FROM " + data['database_table'] + " WHERE employee_number = %s")
-        cursor.execute(query, (employeeNum,));
+        cursor.execute(query, (employeeNum,))
         cnx.commit()
-
-        cursor.close()
-        cnx.close()
-        
+      
     except mysql.connector.Error as err:
-        print("Could not connect to database")
+        print("Could not connect to database") 
+ 
+    cursor.close()
+    cnx.close()
 
 #adds an employee based on what is entered in the AddEmployee textboxes
 def AddEmployeeRecord(forename, surname, email, salary, daysworked, data):
     try:
         #setup connection
-        cnx = mysql.connector.connect(user=data['username'], database=data['database_name'], password=data[password], host=data['host'])
+        cnx = mysql.connector.connect(user=data['username'], database=data['database_name'], password=data['password'], host=data['host'], auth_plugin='mysql_native_password')
         cursor = cnx.cursor()
 
         #query database
-        query = ("INSERT INTO " + data['databse_table'] + " VALUES (" + forename + ", " + surname + ", " + email + ", " + daysworked + ")")
-        cursor.execute(query);
+        query = ("INSERT INTO " + data['database_table'] + " VALUES (" + forename + ", " + surname + ", " + email + ", " + daysworked + ")")
+        cursor.execute(query)
         cnx.commit()
-
-        cursor.close()
-        cnx.close()
 
     except mysql.connector.Error as err:
         print("Could not connect to database")
+
+    cursor.close()
+    cnx.close()
 
 #edits employee record
-def EditEmployeeRecord(employeeNo, forename, surname, email, salary, days, data):
+def EditEmployeeRecord(employeeNum, forename, surname, email, salary, days, data):
     try:
         #setup connection
-        cnx = mysql.connector.connect(user=data['username'], database=data['database_name'], password=data[password], host=data['host'])
+        cnx = mysql.connector.connect(user=data['username'], database=data['database_name'], password=data['password'], host=data['host'], auth_plugin='mysql_native_password')
         cursor = cnx.cursor()
 
         #query database
-        query = ("UPDATE " + data['database_table'] + "SET forename= '" + forname + "', surname= '" + surname + "', email_address= '" + email + "', salary= " + salary + ", days_worked_this_month= " + days + " WHERE employee_number like '%" + employeeNo + "%'")
-        cursor.execute(query);
+        query = ("UPDATE " + data['database_table'] + "SET forename= '" + forename + "', surname= '" + surname + "', email_address= '" + email + "', salary= " + salary + ", days_worked_this_month= " + days + " WHERE employee_number = %s")
+        cursor.execute(query, (employeeNum,))
         cnx.commit()
-
-        cursor.close()
-        cnx.close()
 
     except mysql.connector.Error as err:
         print("Could not connect to database")
+
+    cursor.close()
+    cnx.close()
 
 #validates that an input is an integer
 def ValidateInt(input):
