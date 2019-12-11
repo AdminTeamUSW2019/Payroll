@@ -111,8 +111,8 @@ class PayslipPage(tk.Frame):
         
         #button to delete records from the database
         removeButton = tk.Button(self, text="Remove", font=BUTTON_FONT, image=self.image1, compound=tk.CENTER,
-                              command=lambda: self.Remove())
-        
+                              command=lambda: self.Remove(entryBox))
+
         #labels
         employeeLabel = tk.Label(self, text="Enter employee number", font=BUTTON_FONT)
         entryBox = tk.Entry(self)
@@ -158,9 +158,9 @@ class PayslipPage(tk.Frame):
 
         Utilities.WriteEmployeePaylistToFile(tempEmployee, json_data)
 
-    def Remove(self):
+    def Remove(self, entryBox):
         if messagebox.askokcancel("!!!Warning!!!", "Delete this record? You won't be able to recover it."):
-            Utilities.DeleteEmployeeRecord(entrybox.get(), json_data)
+            Utilities.DeleteEmployeeRecord(entryBox.get(), json_data)
 
 #Screen to add new records to the Employee table
 class AddEditEmployeePage(tk.Frame):
@@ -204,20 +204,21 @@ class AddEditEmployeePage(tk.Frame):
         #grid setup
         titleLabel.grid(row=0, sticky="N", pady=(0, 0), padx=(75, 0))
         labelNumber.grid(row=1, sticky="W")
-        entryNumber.grid(row=1, sticky="W", pady=(0, 0), padx=(135, 0))
+        entryNumber.grid(row=1, sticky="W", pady=(0, 0), padx=(170, 0))
         labelForename.grid(row=2, sticky="W")
-        entryForename.grid(row=2, sticky="W", pady=(0, 0), padx=(135, 0))
+        entryForename.grid(row=2, sticky="W", pady=(0, 0), padx=(170, 0))
         labelSurname.grid(row=3, sticky="W")
-        entrySurname.grid(row=3, sticky="W", pady=(0, 0), padx=(135, 0))
+        entrySurname.grid(row=3, sticky="W", pady=(0, 0), padx=(170, 0))
         labelEmail.grid(row=4, sticky="W")
-        entryEmail.grid(row=4, sticky="W", pady=(0, 0), padx=(135, 0))
+        entryEmail.grid(row=4, sticky="W", pady=(0, 0), padx=(170, 0))
         labelSalary.grid(row=5, sticky="W")
-        entrySalary.grid(row=5, sticky="W", pady=(0, 0), padx=(135, 0))
+        entrySalary.grid(row=5, sticky="W", pady=(0, 0), padx=(170, 0))
         labelDays.grid(row=6, sticky="W")
-        entryDays.grid(row=6, sticky="W", pady=(0, 0), padx=(135, 0))
+        entryDays.grid(row=6, sticky="W", pady=(0, 0), padx=(165, 0))
         backButton.grid(row=7, sticky="W", pady=(0, 0), padx=(0, 0))
         addButton.grid(row=8, sticky="W", pady=(0, 0), padx=(0, 0))
         editButton.grid(row=8, sticky="W", pady=(0, 0), padx=(135, 0))
+        
 
         #enable validation on entry boxes
         entryForename.config(validate="key", validatecommand=(validation, '%S'))
