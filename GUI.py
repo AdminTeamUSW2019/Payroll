@@ -214,7 +214,7 @@ class AddEditEmployeePage(tk.Frame):
         labelSalary.grid(row=5, sticky="W")
         entrySalary.grid(row=5, sticky="W", pady=(0, 0), padx=(170, 0))
         labelDays.grid(row=6, sticky="W")
-        entryDays.grid(row=6, sticky="W", pady=(0, 0), padx=(165, 0))
+        entryDays.grid(row=6, sticky="W", pady=(0, 0), padx=(170, 0))
         backButton.grid(row=7, sticky="W", pady=(0, 0), padx=(0, 0))
         addButton.grid(row=8, sticky="W", pady=(0, 0), padx=(0, 0))
         editButton.grid(row=8, sticky="W", pady=(0, 0), padx=(135, 0))
