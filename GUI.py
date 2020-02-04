@@ -76,13 +76,6 @@ class LoginPage(tk.Frame):
         password_box = tk.Entry(self)
         password_box.place(x=170, y=180)
         
-        
-        #LSEPI CHECKBOX
-        CheckVarOne = 0
-        cb_lsepi = tk.Checkbutton(self, variable=CheckVarOne, onvalue = 1, offvalue = 0, text = "Agree to ToS")
-        
-        cb_lsepi.place(x=30, y=220)
-        
         #image setup
         self.image1 = tk.PhotoImage(file="./Button_Texture2.png")
         
@@ -92,13 +85,13 @@ class LoginPage(tk.Frame):
         self.password_entry = tk.Entry(self, show='*')
         self.password_entry.place(x=170, y=180)
 
-        btn_login = tk.Button(self, text="Login", font=BUTTON_FONT, image = self.image1, compound=tk.CENTER, command=lambda: self.login_Button(CheckVarOne))
+        btn_login = tk.Button(self, text="Login", font=BUTTON_FONT, image = self.image1, compound=tk.CENTER, command=lambda: self.login_Button())
         btn_login.place(x=170, y=220)
         
     # login validation
-    def login_Button(self, CheckVarOne):
-        if CheckVarOne == 0:
-            return
+    def login_Button(self):
+        
+        Utilities.popupMessageFromFile("LSEPI", "./policy.txt")
         
         
         #hashing password

@@ -1,0 +1,282 @@
+
+Organisation Payroll Policy 
+ 
+1	Introduction
+1.1	Purpose
+This document provides Guidelines and procedures for employees in order to convey the rules and correct way of performing tasks within the business.  Also, this policy is intended to convey the consequences of not following the policy of both inadvertent and deliberate violations. 
+
+2	Legal
+2.1	Overview
+This segment provides laws that all employees must understand and follow in order to not breach legislation.
+2.2	The Health and Safety at Work Act (1974)
+	This law covers health and safety Legalizations within the UK, With the objectives to protect employees from hazards within the workplace which could be harmful. Employers are responsible for enforcing these rules in order to minimize risk of accident. In order to fulfil this requirement; employers are responsible for distributing “safety policy” and ensuring that employees are fully aware of it.
+	
+	THE CONSEQUENCES OF NOT FOLLOWING THIS LAW CAN RESULT IN FINES TO IMPRISONMENT
+	
+	The overall objectives of the second section are;
+	
+(1)	“It shall be the duty of every employer to ensure, so far as is reasonably     practicable, the health, safety and welfare at work of all his employees.”
+
+(2)	“Without prejudice to the generality of an employer’s duty under the preceding subsection, the matters to which that duty extends include in particular—
+ (a)the provision and maintenance of plant and systems of work that are, so far as is reasonably practicable, safe and without risks to health;
+
+(b)arrangements for ensuring, so far as is reasonably practicable, safety and absence of risks to health in connection with the use, handling, storage and transport of articles and substances;
+
+(c)the provision of such information, instruction, training and supervision as is necessary to ensure, so far as is reasonably practicable, the health and safety at work of his employees;
+
+(d)so far as is reasonably practicable as regards any place of work under the employer’s control, the maintenance of it in a condition that is safe and without risks to health and the provision and maintenance of means of access to and egress from it that are safe and without such risks;
+
+(e)the provision and maintenance of a working environment for his employees that is, so far as is reasonably practicable, safe, without risks to health, and adequate as regards facilities and arrangements for their welfare at work. "
+
+
+	
+(3)	“Except in such cases as may be prescribed, it shall be the duty of every employer to prepare and as often as may be appropriate revise a written statement of his general policy with respect to the health and safety at work of his employees and the organization and arrangements for the time being in force for carrying out that policy, and to bring the statement and any revision of it to the notice of all of his employees.”
+In conclusion these objectives enforce employers to consider the health, safety, and welfare of employees at work by making sure persons are fully aware of hazards in the workplace.
+
+2.3	The Health and Safety (Display Screen Equipment) Regulations 1992
+An extension of the health and safety act which looks at the issues surrounding the use of computers at the workplace.
+
+“Requirements for workstations;
+
+3.—(1) Every employer shall ensure that any workstation first put into service on or after 1st January 1993 which–
+
+	(a)(regardless of who has provided it) may be used for the purposes of his undertaking by users; or
+
+	(b)has been provided by him and may be used for the purposes of his  undertaking by operators,
+
+meets the requirements laid down in the Schedule to these Regulations to the extent specified in paragraph 1 thereof.
+
+(2) Every employer shall ensure that any workstation first put into service on or before 31st December 1992 which–
+
+	(a)(regardless of who provided it) may be used for the purposes of his undertaking by users; or
+
+	(b)was provided by him and may be used for the purposes of his undertaking by operators,
+
+meets the requirements laid down in the Schedule to these Regulations to the extent specified in paragraph 1 thereof not later than 31st December 1996.”
+
+
+
+
+
+
+
+These requirements set out to ensure the safety of employees using a computer. By law employers must:
+•	provide tiltable screens 
+•	provide anti-glare screen filters 
+•	provide adjustable chairs 
+•	provide foot supports 
+•	make sure lighting is suitable 
+•	make sure workstations are not cramped 
+•	plan work at a computer so that there are frequent breaks 
+•	pay for appropriate eye and eyesight tests by an optician 
+2.4	Computer Misuse Act 1990
+As a computing professional it is imperative that you understand proper use of the computer. FAILURE TO ABIDE TO THIESE RULES CAN POSSIBLY RESULT IN PRISON TIME AND / OR A FINE. 
+
+The objects of this act are;
+“(1) Unauthorised access to computer material. A person is guilty of an offence if—
+
+(a)he causes a computer to perform any function with intent to secure access to any               program or data held in any computer [F1, or to enable any such access to be secured] ;
+(b)the access he intends to secure [F2, or to enable to be secured,] is unauthorised; and
+(c)he knows at the time when he causes the computer to perform the function that that is the case.
+
+(2) Unauthorized access with intent to commit or facilitate commission of further offences. A person is guilty of an offence if—
+(a)he causes a computer to perform any function with intent to secure access to any program or data held in any computer [F1, or to enable any such access to be secured] ;
+(b)the access he intends to secure [F2, or to enable to be secured,] is unauthorized; and
+(c)he knows at the time when he causes the computer to perform the function that that is the case.
+
+
+
+
+
+(3) Unauthorised acts with intent to impair, or with recklessness as to impairing, operation of computer, etc. A person is guilty of an offence if—
+(a)he does any unauthorised act in relation to a computer;
+(b)at the time when he does the act he knows that it is unauthorised; and
+(c)either subsection (2) or subsection (3) below applies.
+
+(3.1) unauthorized acts causing, or creating risk of, serious damage. A person is guilty of an offence if—
+
+(a)the person does any unauthorized act in relation to a computer;
+(b)at the time of doing the act the person knows that it is unauthorized;
+(c)the act causes, or creates a significant risk of, serious damage of a material kind; and
+(d)the person intends by doing the act to cause serious damage of a material kind or is reckless as to whether such damage is caused.”
+
+By agreeing to the policy, you agree to abide by this law.
+2.5	Data Protection Act 2018
+The data protection act is a law enforced to protecting data and the use of that data. Companies in the UK have to account for the rights of the data owners to make sure that it is secure, used appropriately and up to date. The principles are;”
+(1)	Lawfulness, fairness and transparency –
+Personal data must be processed lawful(legal to perform and have valid lawful basis) is being used in reasonably ways and what you are doing clear to the data owner
+(2)	Purpose limitation –
+You must be clear at the start about the process and purpose 
+(3)	Data minimisation –
+a.	Sufficient to perform purpose
+b.	Relevant to what you are processing
+c.	And no more than needed for the purpose
+(4)	Accuracy –
+The data is correct and up to date
+(5)	Storage limitation –
+Data should only be kept for the time needed
+(6)	Integrity and confidentiality (security) –
+You must ensure that measures are put in place to protect the data. THIS PRINCIPLE IS IMPORTANT BECAUSE IT MEANS EVERY CHOICE MADE WITH DATA MUST CONSIDER THE SECURITY OF IT
+(7)	Accountability-
+take responsibility for what you do with personal data and how you comply with the other principles “
+By agreeing to the policy, you fully understand the GDPR and how to processing personal data within the system.
+2.6	Copyright, Designs and Patents Act 1988
+The Copyright, Designs and patents act is legislation put into place to protect the original creator’s work from copying and/or unauthorised distribution of all types of work including digital and non-digital work. PUNISMNET FOR INFRINGING COPYRIGHT CAN RESULT IN 6 MONTHS IMPRISOMENT AND/OR 5000 POUND FINE. “Upon conviction in the Crown court the maximum term of incarceration in the UK for physical copyright infringement is 10 years and/or an "unlimited" fine.”
+ The current list of work protect under this act are;
+“
+1.	Literary Material – Books, reports, articles, letters, computer programs and poetry whether these are printed, verbal or through music
+2.	Databases – Any collection of information or materials which are accessible and arranged in an orderly fashion like a report or library catalogue
+3.	Art – regardless of quality, all artistic work is covered including photos, sculptures, maps, buildings and photographs
+4.	Music – Any composition which is recorded. Lyrics are classed as literary material
+5.	Dramatic work – Any non spoken information provided in print such as stage directions or sections of the performance recorded in print. Scripts will fall into the literary works section
+6.	Recording of sound – The recording can be in a range of different formats. Direct copies of other recordings are excluded
+7.	Film footage – Productions in any format including DVDs and digital files
+8.	Broadcasts – Sounds and images which are used to transmit information to viewers or listeners
+“
+Third parties who copy, rent, transmit, edit or show this material without permission from the original creator of the work may be in violation of copyright, breaching the copyright law.
+2.7	Understanding these laws and incorporating them into workflow
+Computer Misuse Act 1990
+Under this law, unauthorised access to a computing system (i.e breaching security to gain access to un-authorised access into a system or even picking up and using an un-authorised USB stick) breach this law. Intending to do malicious harm also come under this law. 
+To not breach this law, consider the following when working on the system;
+•	Is what I’m currently accessing authorised by the owner for my viewing?
+•	And of-course; do not forceful gain access to computing systems by; hacking, scamming, social engineer, etc.
+
+Data Protection Act 2018
+This law enforcing individuals of a business to consider the impactions of data and how it should be used by setting out key principles called “data protection principles” which are;
+1)	used fairly and lawfully
+2)	used for limited, specifically stated purposes
+3)	used in a way that is adequate, relevant and not excessive
+4)	accurate
+5)	kept for no longer than is absolutely necessary
+6)	handled according to people’s data protection rights
+7)	kept safe and secure
+8)	not transferred outside the European Economic Area without adequate protection
+
+As an employee working on the pay-roll system it is important to consider the security of information. This is imperative to consider into every aspect of the system and by accepting this policy you accept to consider security into every aspect of the system
+
+Some key points of consideration are;
+•	When dealing with transactions it is important to consider what could go wrong; an error or mishap could result in large amounts being payed out or stolen so security with this system needs to be thoroughly tested to ensure it is safe and to achieve this a procedure has been incorporated from https://financial.ucsc.edu/pages/management_financialcontrols.aspx#ftcwhat  that must be followed by complying with this policy . See transaction process for the steps.
+•	That all forms of input and output are secured. Implementing security features into these are necessary to ensure security in the system. 
+
+Copyright, Designs and Patents Act 1988
+Under this law, Intellectual property (IP) are protected from copying and misuse. In order to abide by this legislation any materials used in the software resources must be originally created or have special permissions from the owner also copyright free material must be checked before using to ensure no confusion or troubles. 
+3	Privacy, Confidentiality and Security 
+
+Privacy and Confidentiality are enforced through the Data Protection Act of 1998. Information held by the business must not be shared out; by accepting this policy you accept the coincidences of deliberate or accidently leaking information. To ensure this cannot happen rigorous security are in place to stop any attempts to breach this conduct. To ensure accidental leaks do not happen, the security policy must be followed.
+
+3.1	Employee Security Policy
+Here are the principles of the policy. Any attempt to deviate from these or sabotage them is a breach of policy. 
+•	Every computer’s firewall must be turned on and the trusted anti-virus allowed to run at the begging and end of the day. Only Network engineer are allowed to tinker with the firewalls and change any settings.
+o	Any routers within the company follow the same rules and attempts to tinker with them are a breach of policy
+•	Any pc setting outside cosmetic changes must not be changes and windows should be allowed to automatically update without user intervention.
+o	Any software should get the same treatment
+•	Staff may only use designated applications and accounts. No sharing of passwords is allowed inside and/or outside the business.
+o	Social engineering attempts should be easily recognised and there is no excuse to fall victim to them DO NOT SHARE YOUR INFORMATION WITH ANYONE NOT EVEN THE CEO OR COMPUTER ENGINEERS.
+o	Computer must also be secured. You must lock your computer when not in use and ensure no suspicious devices are plugged into it. YOU ARE RESPONCILBE IF YOUR COMPUTER IS ACCESED WITHOUT AUTHORISASTION 
+•	Direct access to components is not allowed. Do not access the hardware outside the USB ports and other frontal ports and buttons.
+
+
+
+
+
+
+
+3.2	Engineer/Computer Administrator Security Policy
+When considering implementation of computer hardware and software each of these policies must be followed;
+•	Every computer must have their firewall turned on and an approve and appropriate computer anti-virus must be installed, regularly update and scan daily. You must also be up to date with recently discovered security flaws in all hardware and software and must be ready to respond appropriately.
+o	Anti-spyware should also be installed and any other security software which will ensure the complete protections of all systems should be considered 
+•	The operating system and software are set to update automatically as soon as an update is available
+•	Only allow staff to see what is necessary for their work and do not facility a means to share passwords however allow them to share information within the system securely.
+•	Any information held about persons electronically must be secured using encryption and be safe from both outside and inside tinkering
+•	Backups must be taken regularly and systems must be put into place to allow facilitation of regular automatic backups.
+•	All information must be destroyed or “nuked” after use to ensure no information can be restored from them
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3.3	Development Security Policy
+
+All input and outputs within the developed system must be secured. here are some Inputs and outputs with security considerations;
+o	That all saved information is secured with encryption such as sha256 or any other relevant encryption to the system of saving data.
+o	Code within the program itself is compiled and secure from attempts to breach it. The source must not be shared out and that no vital information is shown to the user. This also means that the software must be securely made with consideration of all vital security breaches consider (SQL injection, overflow, etc.)
+o	All internet communications must facilitate secured protocols, for example HTTPS instead of HTTP, etc.
+o	Any changes made are checked and agreed by the whole team to prevent inside security breaches.
+o	You cannot use this information for personal use and backdoors are not allowed to be created.
+Incorporate the Financial Affairs example of finance management security from the website: https://financial.ucsc.edu/pages/management_financialcontrols.aspx#ftcwhat  
+Here is the process copied from the page;
+•	For each stage of the process, perform the following steps: 
+o	Identify the specific risks that exist at this stage of the process, without regard to existing control procedures in place. Refer to Transaction Process Risks for more information about risks. 
+o	Assess the strength of the control procedure currently in place in terms of the following factors: 
+	Effective management of the risks identified above. 
+	Based on the response to the previous item, identify which of the seven financial transaction control standards the control procedure provides reasonable assurance of compliance.
+	Evaluate the thoroughness of the review. 
+	Evaluate the knowledge, analytical skill, and qualification levels of the individual responsible for handling the procedure control. 
+	Evaluate the adequacy of separation of duties between the individual responsible for handling this control procedure and those responsible for handling other control procedures in the financial process. For more information about separation of duties, refer to the Understanding Separation of Duties Guide. 
+•	Based on the assessment information gathered above, evaluate the strength of the procedure control. Refer to Financial Control Assessment for further guidance. 
+•	Repeat steps 1 and 2 for each stage of the process. 
+•	From a process-wide perspective, evaluate the strength of controls taken together. 
+o	Is a strong control procedure(s) in place at the point(s) in the process where many or all of the risks have been identified?
+o	Do the controls provide reasonable assurance that a transaction will consistently complete the process complying with all applicable transaction control standards?
+•	If the strength of procedure controls taken together is insufficient, then re-examine procedure controls and make the necessary adjustments. 
+o	Strengthen controls at existing points in the process; or 
+o	Implement new controls at critical points in the process.
+By accepting the policy to accept to prevent any of these security breaches and any other possible ones not mentioned here
+
+4	Health and safety
+In accordance with Health and Safety regulations the following policy should be adhered to. It is our commitment to ensure safety at work and new aims may be added regularly to reflect his. 
+•	To ensure minimum strain, office ergonomic equipment must be used and the proper sitting position must be maintained while using the equipment.  Refer to figure 4.1 for a diagram of the proper way to sit.
+o	Repetitive Strain Injury (RSI)  is a wrist injury caused by repetitive movement or overuse of the muscles and tendons located on the wrist. This causes pain and ailments over a long period, to minimize this condition make sure good posture and adjustments are made. Also en
+o	sure breaks are taken after long sessions for at least 5 minutes. Talk to the health and safety manager for adjustments to working conditions or more information.
+•	Computers hardware should be maintained and supervised when in use to ensure no physical risk in present. Hardware in the room should be considered and fixed if necessary if any of these conditions are met.
+o	Wires – Wires should be covered up when possible and no hanging or trailing wires should be present. If the need arises ensure wires are covered using a floor able protector
+o	Food and drink should not be consumed near the computers
+o	Electrical sockets must not be overloaded and covered sockets should not be accessed. Talk to a supervisor if you are unsure if a socket is safe or not
+o	Space around the computer must be kept clear
+o	Heating must and ventilation equipment must be kept clear and in suitable condition
+o	The room light should be kept so that glare or reflections are not capable of penetrating the eyes.
+o	equipment must be in proper safe working conditions and desks should be able to support the weight.
+Manual Handling Operations Regulations 1992 (MHOR) require employers to manage the risks to their employees. They must:
+•	Avoid hazardous manual handling operations so far as is reasonably practicable, by redesigning the task to avoid moving the load or by automating or mechanising the process.
+•	Make a suitable and sufficient assessment of the risk of injury from any hazardous manual handling operations that cannot be avoided.
+•	Reduce the risk of injury from those operations so far as is reasonably practicable. Where possible, provide mechanical assistance, for example, a sack trolley or hoist. Where this is not reasonably practicable then explore changes to the task, the load and the working environment.
+
+
+Anything that is deemed a threat or could endanger health and safety and you believe it needs to be added to the policy contact a manager asap.
+5	Ethics
+Employees are expected act fairly and consider every ethical choice in an unbiased and with consideration of the business. Conflict of interest is when an individual or organisation act in a corrupt way to benefit only themselves normally financially however personal issues may also be involved. To ensure this does not happen This code of conduct is enforced to ensure no one is working with self interest in mind and ensure these conflicts cannot arise.
+
+Situations to look out for;
+•	Accepting benefits – Benefits can be considered a form of compensation such as payment or gifts. In this situation this it can be considered bribery to implement or backstab the work of the business or use another solution for compensation. To avoid this ethical issue do not accept bribery or other form of compensation from outside sources 
+•	The use of business owned information – IT businesses contain a lot of confidential information about persons such as personal client information. Discussing this information to outside sources is against this policy.
+•	Influence peddling – Influence peddling is the act of using one’s power to influence and outcome normally for monetary reward or a favour. IT professionals must not use power for outside gain.
+•	Using employer’s property for personal advantage - Using business owned computers or equipment for personal gain is against the policy 
+•	Moonlighting – The act of having 2 or more jobs at a time which would fatigue and decrement working capabilities.  All outside employment must be disclosed to a manager.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
