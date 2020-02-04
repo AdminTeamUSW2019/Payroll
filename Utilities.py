@@ -6,7 +6,17 @@ import math
 from decimal import Decimal
 import hashlib
 
-
+#method to create a popup window with title <title> and message <msg>
+def popupmsg(title, msg):
+    popup = tk.Tk()
+    popup.wm_title(title)
+    label = ttk.Label(popup, text=msg)
+    label.pack(side="top", fill="x", pady=10)
+    B1 = ttk.Button(popup, text="Okay", command = popup.destroy)
+    B1.pack()
+    popup.mainloop()
+    
+    
 #struct to hold employee data for the GUI
 class Employee:
   def __init__(self, employeeNum, forename, surname, email_address, salary, daysWorked):
