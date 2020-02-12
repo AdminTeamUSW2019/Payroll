@@ -90,15 +90,12 @@ class LoginPage(tk.Frame):
         
     # login validation
     def login_Button(self):
-        
-        Utilities.popupMessageFromFile("LSEPI", "./policy.txt")
-        
-        
         #hashing password
         password_hashed = Utilities.hash_password(self.username_entry.get(), self.password_entry.get(),json_data )
 
         if Utilities.login_verification(self.username_entry.get(), password_hashed, json_data):
              self._controller.show_frame(MenuPage)
+             Utilities.popupMessageFromFile("LSEPI", "./LSEPI.txt")
         else:
             messagebox.showerror("Error", "Incorrect username or password")
     
