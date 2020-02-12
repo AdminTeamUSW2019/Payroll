@@ -6,7 +6,35 @@ import math
 from decimal import Decimal
 import hashlib
 
+import tkinter as tk
+from tkinter import messagebox
+import tkinter.scrolledtext as tkst
 
+#method to create a popup window with title <title> and message <msg>
+def popupmsg(title, msg):
+    win = tk.Tk()
+    win.title(title);
+    frame1 = tk.Frame(
+    master = win,
+    bg = '#bdbbb7')
+    frame1.pack(fill='both', expand='yes')
+    editArea = tkst.ScrolledText(
+        master = frame1,
+        wrap   = tk.WORD,
+        width  = 80,
+        height = 50
+    )
+    editArea.pack(padx=10, pady=10, fill=tk.BOTH, expand=True)
+    editArea.insert(tk.INSERT, msg)
+    win.mainloop()
+    
+    
+def popupMessageFromFile(title, file):
+    try:
+        f = open(file, "r")
+        popupmsg(title, f.read())
+    except:
+        popupmsg("Error", "Opening text file failed, contact a system enginner.")
 #struct to hold employee data for the GUI
 class Employee:
   def __init__(self, employeeNum, forename, surname, email_address, salary, daysWorked):

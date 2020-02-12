@@ -51,6 +51,8 @@ class PayrollApp(tk.Tk):
     
 # Login Page of the application, can access to mainpage if username and password is correct
 class LoginPage(tk.Frame):
+    
+    #Output variable for the check box    
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self._controller = controller
@@ -83,7 +85,7 @@ class LoginPage(tk.Frame):
         self.password_entry = tk.Entry(self, show='*')
         self.password_entry.place(x=170, y=180)
 
-        btn_login = tk.Button(self, text="Login", font=BUTTON_FONT, image = self.image1, compound=tk.CENTER, command=self.login_Button)
+        btn_login = tk.Button(self, text="Login", font=BUTTON_FONT, image = self.image1, compound=tk.CENTER, command=lambda: self.login_Button())
         btn_login.place(x=170, y=220)
         
     # login validation
@@ -93,6 +95,7 @@ class LoginPage(tk.Frame):
 
         if Utilities.login_verification(self.username_entry.get(), password_hashed, json_data):
              self._controller.show_frame(MenuPage)
+             Utilities.popupMessageFromFile("LSEPI", "./LSEPI.txt")
         else:
             messagebox.showerror("Error", "Incorrect username or password")
     
